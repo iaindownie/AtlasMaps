@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements
     HashMap mapSet = null;
     TreeMap mapEnglishNamesAndSpeciesCodes = null;
     TreeMap mapSpeciesCodesAndEnglishNames = null;
+    InputMethodManager imm;
 
     private int originalPosition = 0;
 
@@ -54,15 +55,15 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InputMethodManager imm = (InputMethodManager) this
+         imm = (InputMethodManager) this
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         try {
             mapSet = plr.getMapsAsHashMap(getApplicationContext(), false);
             mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(getApplicationContext());
-            mapSpeciesCodesAndEnglishNames = new TreeMap();
-            ArrayList codedSpecies = new ArrayList(mapEnglishNamesAndSpeciesCodes.keySet());
+            mapSpeciesCodesAndEnglishNames = new TreeMap<Integer, String>();
+            ArrayList codedSpecies = new ArrayList<TreeMap>(mapEnglishNamesAndSpeciesCodes.keySet());
             for (int i = 0; i < codedSpecies.size(); i++) {
                 String speciesName = (String) codedSpecies.get(i);
                 String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
@@ -116,7 +117,7 @@ public class MainActivity extends Activity implements
                     expandableListView.collapseGroup(lastExpandedPosition);
                 }
                 lastExpandedPosition = groupPosition;
-
+                imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
             }
 
         });

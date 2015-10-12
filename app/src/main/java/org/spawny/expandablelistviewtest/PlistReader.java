@@ -16,13 +16,13 @@ import xmlwise.Plist;
 import xmlwise.XmlParseException;
 
 /**
- * Created by iaindownie on 30/09/2015.
+ * Created by Iain Downie on 30/09/2015.
  */
 public class PlistReader {
 
     public HashMap getMapsAsHashMap(Context context, boolean sensibleNames) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
-        HashMap<String, List> refinedMap = new HashMap<String, List>();
+        HashMap<String, List> refinedMap = new HashMap<>();
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
@@ -51,7 +51,7 @@ public class PlistReader {
         ArrayList alphaSpecies = new ArrayList(hMap.keySet());
         for (int i = 0; i < alphaSpecies.size(); i++) {
             List anArray = (ArrayList) hMap.get(alphaSpecies.get(i));
-            List<String> species2 = new ArrayList<String>();
+            List species2 = new ArrayList<>();
             for (int j = 0; j < anArray.size(); j++) {
                 ArrayList b = (ArrayList) anArray.get(j);
                 for (int z = 0; z < b.size(); z++) {

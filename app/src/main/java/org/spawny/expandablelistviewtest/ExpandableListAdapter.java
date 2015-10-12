@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+/**
+ * Created by Iain Downie on 30/09/2015.
+ */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
@@ -29,7 +32,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
 
-        this.originalList = new ArrayList<String>();
+        this.originalList = new ArrayList<>();
         this.originalList.addAll(expandableListTitle);
 
     }
@@ -60,9 +63,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         //System.out.println(expandedListText);
         LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aListItem);
         if(expandedListText.startsWith("Breeding")){
-            linearLayout.setBackgroundColor(Color.parseColor("#ffcc99"));
+            linearLayout.setBackgroundColor(Color.parseColor("#FFCC99"));
         }else{
-            linearLayout.setBackgroundColor(Color.parseColor("#99ccff"));
+            linearLayout.setBackgroundColor(Color.parseColor("#99CCFF"));
         }
 
         return convertView;
@@ -136,7 +139,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             for(String species: originalList){
 
                 List<String> speciesList = expandableListTitle;
-                ArrayList<String> newList = new ArrayList<String>();
+                ArrayList<String> newList = new ArrayList<>();
                     if(species.toLowerCase().contains(query)){
                         newList.add(species);
                     }

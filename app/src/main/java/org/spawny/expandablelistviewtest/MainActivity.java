@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,9 @@ import java.util.TreeMap;
 
 import xmlwise.XmlParseException;
 
+/**
+ * Created by Iain Downie on 30/09/2015.
+ */
 public class MainActivity extends Activity implements
         SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
@@ -55,15 +59,15 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         imm = (InputMethodManager) this
+        imm = (InputMethodManager) this
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         try {
             mapSet = plr.getMapsAsHashMap(getApplicationContext(), false);
             mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(getApplicationContext());
-            mapSpeciesCodesAndEnglishNames = new TreeMap<Integer, String>();
-            ArrayList codedSpecies = new ArrayList<TreeMap>(mapEnglishNamesAndSpeciesCodes.keySet());
+            mapSpeciesCodesAndEnglishNames = new TreeMap<>();
+            ArrayList codedSpecies = new ArrayList<>(mapEnglishNamesAndSpeciesCodes.keySet());
             for (int i = 0; i < codedSpecies.size(); i++) {
                 String speciesName = (String) codedSpecies.get(i);
                 String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
@@ -74,8 +78,8 @@ public class MainActivity extends Activity implements
 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (XmlParseException e) {
-            e.printStackTrace();
+        } catch (XmlParseException ex) {
+            ex.printStackTrace();
         }
 
         /*
@@ -96,7 +100,7 @@ public class MainActivity extends Activity implements
         //expandAll();
 
 
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
+        expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
@@ -171,16 +175,13 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart() {
         super.onStart();
-        //Log.i(TAG, "Activity Life Cycle : onStart : Activity Started");
-
+        Log.i(TAG, "Activity Life Cycle : onStart : Activity Started");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //System.out.println("In onResume:" + originalPosition);
-        //expandableListView.expandGroup(originalPosition);
-        //Log.i(TAG, "Activity Life Cycle : onResume : Activity Resumed");
+        Log.i(TAG, "Activity Life Cycle : onResume : Activity Resumed");
     }
 
     @Override
@@ -192,7 +193,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStop() {
         super.onStop();
-        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stoped");
+        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stopped");
     }
 
     @Override
@@ -275,8 +276,8 @@ public class MainActivity extends Activity implements
     public boolean onClose() {
         System.out.println("Calling close...");
         expandableListAdapter.filterData("");
-        int count =  expandableListAdapter.getGroupCount();
-        for (int i = 0; i <count ; i++)
+        int count = expandableListAdapter.getGroupCount();
+        for (int i = 0; i < count; i++)
             expandableListView.collapseGroup(i);
         //expandAll();
         return false;
@@ -285,8 +286,8 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onQueryTextChange(String query) {
         expandableListAdapter.filterData(query);
-        int count =  expandableListAdapter.getGroupCount();
-        for (int i = 0; i <count ; i++)
+        int count = expandableListAdapter.getGroupCount();
+        for (int i = 0; i < count; i++)
             expandableListView.collapseGroup(i);
         //expandAll();
         return false;
@@ -295,8 +296,8 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onQueryTextSubmit(String query) {
         expandableListAdapter.filterData(query);
-        int count =  expandableListAdapter.getGroupCount();
-        for (int i = 0; i <count ; i++)
+        int count = expandableListAdapter.getGroupCount();
+        for (int i = 0; i < count; i++)
             expandableListView.collapseGroup(i);
         search.clearFocus();
         //expandAll();

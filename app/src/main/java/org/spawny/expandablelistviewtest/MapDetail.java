@@ -14,7 +14,7 @@ import java.io.InputStream;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
- * Created by iaindownie on 30/09/2015.
+ * Created by Iain Downie on 30/09/2015.
  */
 public class MapDetail extends Activity {
 

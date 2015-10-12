@@ -11,10 +11,13 @@ import java.util.TreeMap;
 
 import xmlwise.XmlParseException;
 
+/**
+ * Created by Iain Downie on 30/09/2015.
+ */
 public class ExpandableListDataPump {
 
     public static LinkedHashMap<String, List<String>> getData(Context context, TreeMap mapEnglishNamesAndSpeciesCodes, TreeMap mapSpeciesCodesAndEnglishNames, HashMap mapSet) throws IOException, XmlParseException {
-        LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
+        LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<>();
 
         //System.out.println("mapEnglishNamesAndSpeciesCodes: " + mapEnglishNamesAndSpeciesCodes.size() + " " + mapEnglishNamesAndSpeciesCodes.toString());
         //System.out.println("mapSpeciesCodesAndEnglishNames: " + mapSpeciesCodesAndEnglishNames.size() + " " + mapSpeciesCodesAndEnglishNames.toString());

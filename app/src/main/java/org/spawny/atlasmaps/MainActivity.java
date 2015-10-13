@@ -134,7 +134,7 @@ public class MainActivity extends Activity implements
                 /*Toast.makeText(getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " List Collapsed.",
                         Toast.LENGTH_SHORT).show();*/
-
+                imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
             }
         });
 
@@ -183,6 +183,9 @@ public class MainActivity extends Activity implements
 
     @Override
     protected void onResume() {
+        expandableListView.setFocusable(true);
+        expandableListView.setFocusableInTouchMode(true);
+        expandableListView.requestFocus();
         super.onResume();
         Log.i(TAG, "Activity Life Cycle : onResume : Activity Resumed");
     }

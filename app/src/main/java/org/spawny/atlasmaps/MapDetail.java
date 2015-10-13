@@ -65,7 +65,7 @@ public class MapDetail extends Activity {
             // set image to ImageView
             mImageView.setImageDrawable(d);
             mAttacher = new PhotoViewAttacher(mImageView);
-            positionInArray.setText("Map " + (position + 1) + "/" + allMaps.size());
+            positionInArray.setText((position + 1) + "/" + allMaps.size());
 
         } catch (IOException ex) {
             return;
@@ -73,7 +73,7 @@ public class MapDetail extends Activity {
 
         leftButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(TAG, "Button Press : LeftButton");
+                //Log.i(TAG, "Button Press : LeftButton");
                 try {
                     // get input stream
                     if (position == 0) {
@@ -84,7 +84,7 @@ public class MapDetail extends Activity {
                     //System.out.println("Position:" + position);
                     ims = getAssets().open("maps/" + (String) allMaps.get(position));
 
-                    positionInArray.setText("Map " + (position + 1) + "/" + allMaps.size());
+                    positionInArray.setText((position + 1) + "/" + allMaps.size());
 
                     // load image as Drawable
                     Drawable d = Drawable.createFromStream(ims, null);
@@ -100,7 +100,7 @@ public class MapDetail extends Activity {
 
         rightButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(TAG, "Button Press : RightButton");
+                //Log.i(TAG, "Button Press : RightButton");
                 try {
                     // get input stream
                     if (position == allMaps.size() - 1) {
@@ -111,7 +111,7 @@ public class MapDetail extends Activity {
                     //System.out.println("Position:" + position);
                     ims = getAssets().open("maps/" + (String) allMaps.get(position));
 
-                    positionInArray.setText("Map " + (position + 1) + "/" + allMaps.size());
+                    positionInArray.setText((position + 1) + "/" + allMaps.size());
 
                     // load image as Drawable
                     Drawable d = Drawable.createFromStream(ims, null);

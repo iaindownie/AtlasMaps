@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:id="@+id/InnerRelativeLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
@@ -14,20 +14,24 @@
             android:id="@+id/leftbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="Previous" />
 
         <TextView
             android:id="@+id/locEx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_weight="1.0"
-            android:text="3/11"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/rightbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:text="Next" />
 
     </LinearLayout>

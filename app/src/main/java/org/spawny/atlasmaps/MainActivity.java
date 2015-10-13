@@ -1,4 +1,4 @@
-package org.spawny.expandablelistviewtest;
+package org.spawny.atlasmaps;
 
 import android.app.Activity;
 import android.app.SearchManager;
@@ -161,7 +161,9 @@ public class MainActivity extends Activity implements
                         MapDetail.class);
                 Bundle b = new Bundle();
                 b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+                //System.out.println("Map:" + mapName);
                 b.putString("TITLE", expandableListTitle.get(groupPosition));
+                b.putSerializable("AllMaps", aBunchOfMaps);
                 mapView.putExtras(b);
                 startActivity(mapView);
                 return false;

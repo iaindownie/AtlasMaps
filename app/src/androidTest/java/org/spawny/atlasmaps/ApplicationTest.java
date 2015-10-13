@@ -1,4 +1,4 @@
-package org.spawny.expandablelistviewtest;
+package org.spawny.atlasmaps;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

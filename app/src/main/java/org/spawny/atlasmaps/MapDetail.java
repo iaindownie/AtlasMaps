@@ -1,4 +1,4 @@
-package org.spawny.expandablelistviewtest;
+package org.spawny.atlasmaps;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -32,6 +33,9 @@ public class MapDetail extends Activity {
         Bundle b = intent.getExtras();
 
         String aMap = b.containsKey("MAP") ? b.getString("MAP") : "blank.png";
+
+        ArrayList allMaps = (ArrayList) b.getSerializable("AllMaps");
+        //System.out.println("AllMaps:" + allMaps.toString());
         //System.out.println("AMap:" + aMap);
         if (aMap.length() == 0) aMap = "blank.png";
 

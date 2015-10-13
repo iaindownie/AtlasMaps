@@ -1,4 +1,4 @@
-package org.spawny.expandablelistviewtest;
+package org.spawny.atlasmaps;
 
 /**
  * Created by Iain Downie on 30/09/2015.
@@ -22,10 +22,10 @@ public class Utilities {
     }
 
     public static String getSensibleMapName(String aStr) {
-        if (aStr.contains("BD20072011_")) return "Breeding Distribution 2007-11";
+        if (aStr.contains("BD20072011_")) return "Breeding Distribution 2008-11";
         else if (aStr.contains("WD20072011_")) return "Winter Distribution 2007-11";
-        else if (aStr.contains("BA20072011_")) return "Breeding Abundance 2007-11";
-        else if (aStr.contains("WA20072011_")) return "Winter Abundance 2007-11";
+        else if (aStr.contains("BA20072011_")) return "Breeding Abundance 2008-11";
+        else if (aStr.contains("WA20072011_")) return "Winter Abundance 2008-11";
         else if (aStr.contains("BD19681972_")) return "Breeding Distribution 1968-72";
         else if (aStr.contains("WD19681972_")) return "Winter Distribution 1968-72";
         else if (aStr.contains("BD19881991_")) return "Breeding Distribution 1988-91";

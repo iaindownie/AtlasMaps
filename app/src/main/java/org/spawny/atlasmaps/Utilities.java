@@ -1,5 +1,7 @@
 package org.spawny.atlasmaps;
 
+import java.util.ArrayList;
+
 /**
  * Created by Iain Downie on 30/09/2015.
  */
@@ -37,6 +39,15 @@ public class Utilities {
         else if (aStr.contains("BH19702011_")) return "Breeding Occupancy History 1970-2011";
         else if (aStr.contains("BT19902011_")) return "Breeding Abundance Change 1990-2011";
         else return aStr;
+    }
+
+    public static ArrayList getImageStringsOnly(ArrayList aList) {
+        ArrayList newList = new ArrayList<>();
+        for (int i = 0; i < aList.size(); i++) {
+            String mapName = (String) aList.get(i);
+            newList.add(mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+        }
+        return newList;
     }
 
 }

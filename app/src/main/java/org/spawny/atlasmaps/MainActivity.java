@@ -163,7 +163,8 @@ public class MainActivity extends Activity implements
                 b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
                 //System.out.println("Map:" + mapName);
                 b.putString("TITLE", expandableListTitle.get(groupPosition));
-                b.putSerializable("AllMaps", aBunchOfMaps);
+                b.putInt("POSITION", childPosition);
+                b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
                 mapView.putExtras(b);
                 startActivity(mapView);
                 return false;

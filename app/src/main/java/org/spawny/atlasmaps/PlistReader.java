@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -49,11 +50,13 @@ public class PlistReader {
         }
 
         ArrayList alphaSpecies = new ArrayList(hMap.keySet());
+        List anArray, species2;
+        ArrayList b;
         for (int i = 0; i < alphaSpecies.size(); i++) {
-            List anArray = (ArrayList) hMap.get(alphaSpecies.get(i));
-            List species2 = new ArrayList<>();
+            anArray = (ArrayList) hMap.get(alphaSpecies.get(i));
+            species2 = new ArrayList<>();
             for (int j = 0; j < anArray.size(); j++) {
-                ArrayList b = (ArrayList) anArray.get(j);
+                b = (ArrayList) anArray.get(j);
                 for (int z = 0; z < b.size(); z++) {
                     if (sensibleNames) {
                         species2.add(Utilities.getSensibleMapName(b.get(z).toString()));
@@ -67,7 +70,6 @@ public class PlistReader {
         }
         return refinedMap;
 
-
     }
 
     public TreeMap getSpeciesNamesAsTreeMap(Context context) throws XmlParseException, IOException {
@@ -78,7 +80,8 @@ public class PlistReader {
             InputStream inputStream = null;
             BufferedReader br = null;
             try {
-                inputStream = assetManager.open("species_atlas.plist");
+                //inputStream = assetManager.open("species_atlas.plist");
+                inputStream = assetManager.open("species.plist");
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -97,6 +100,37 @@ public class PlistReader {
             ex.printStackTrace();
         }
         return tMap;
+
+    }
+
+    public HashMap getBouListAsHashMap(Context context) throws XmlParseException, IOException {
+        HashMap<String, Object> hMap = null;
+        try {
+            //In order to access files stored in Asset folder you need AssetManager
+            AssetManager assetManager = context.getResources().getAssets();
+            InputStream inputStream = null;
+            BufferedReader br = null;
+            try {
+                //inputStream = assetManager.open("species_atlas.plist");
+                inputStream = assetManager.open("bou_all_ordered.plist");
+                //read it with BufferedReader
+                br = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                hMap = new HashMap(Plist.fromXml(sb.toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                br.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return hMap;
 
     }
 }

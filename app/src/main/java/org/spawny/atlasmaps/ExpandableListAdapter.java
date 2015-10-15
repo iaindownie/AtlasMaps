@@ -105,6 +105,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+        /*LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aGroupItem);
+        if(listPosition%2==0){
+            linearLayout.setBackgroundColor(Color.parseColor("#CCCCCC"));
+        }else{
+            linearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }*/
+
         return convertView;
     }
 

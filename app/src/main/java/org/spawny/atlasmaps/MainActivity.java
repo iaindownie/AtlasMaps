@@ -55,17 +55,20 @@ public class MainActivity extends Activity implements
 
     private static final String TAG = "MainActivity";
 
+    HashMap bouListingsAsHashMap = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imm = (InputMethodManager) this
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
+        Context myContext = this.getApplicationContext();
 
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         try {
-            mapSet = plr.getMapsAsHashMap(getApplicationContext(), false);
-            mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(getApplicationContext());
+            mapSet = plr.getMapsAsHashMap(myContext, false);
+            mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(myContext);
             mapSpeciesCodesAndEnglishNames = new TreeMap<>();
             ArrayList codedSpecies = new ArrayList<>(mapEnglishNamesAndSpeciesCodes.keySet());
             for (int i = 0; i < codedSpecies.size(); i++) {
@@ -75,6 +78,9 @@ public class MainActivity extends Activity implements
             }
             expandableListDetail = ExpandableListDataPump.getData(this, mapEnglishNamesAndSpeciesCodes,
                     mapSpeciesCodesAndEnglishNames, mapSet);
+
+            bouListingsAsHashMap = plr.getBouListAsHashMap(myContext);
+            System.out.println("bouListingsAsHashMap:" + bouListingsAsHashMap.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -134,7 +140,7 @@ public class MainActivity extends Activity implements
                 /*Toast.makeText(getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " List Collapsed.",
                         Toast.LENGTH_SHORT).show();*/
-                imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+                //imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
             }
         });
 

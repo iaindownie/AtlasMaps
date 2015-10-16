@@ -188,7 +188,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, "Activity Life Cycle : onStart : Activity Started");
+        //Log.i(TAG, "Activity Life Cycle : onStart : Activity Started");
     }
 
     @Override
@@ -197,7 +197,7 @@ public class MainActivity extends Activity implements
         expandableListView.setFocusableInTouchMode(true);
         expandableListView.requestFocus();
         super.onResume();
-        Log.i(TAG, "Activity Life Cycle : onResume : Activity Resumed");
+        //Log.i(TAG, "Activity Life Cycle : onResume : Activity Resumed");
     }
 
     @Override

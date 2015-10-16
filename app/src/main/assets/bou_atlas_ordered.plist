@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plist version="1.0">
+  <dict>
+    <key>Wildfowl</key>
+    <array>
+      <string>Mute Swan</string>
+      <string>Black Swan</string>
+      <string>Bewick's Swan</string>
+      <string>Whooper Swan</string>
+      <string>Chinese Goose</string>
+      <string>Bean Goose</string>
+      <string>Pink-footed Goose</string>
+      <string>White-fronted Goose</string>
+      <string>Lesser White-fronted Goose</string>
+      <string>Greylag Goose</string>
+      <string>Bar-headed Goose</string>
+      <string>Snow Goose</string>
+      <string>Ross's Goose</string>
+      <string>Canada Goose</string>
+      <string>Barnacle Goose</string>
+      <string>Brent Goose</string>
+      <string>Red-breasted Goose</string>
+      <string>Egyptian Goose</string>
+      <string>Ruddy Shelduck</string>
+      <string>Shelduck</string>
+      <string>Muscovy Duck</string>
+      <string>Wood Duck</string>
+      <string>Mandarin Duck</string>
+      <string>Wigeon</string>
+      <string>American Wigeon</string>
+      <string>Gadwall</string>
+      <string>Teal</string>
+      <string>Green-winged Teal</string>
+      <string>Mallard</string>
+      <string>Pintail</string>
+      <string>Garganey</string>
+      <string>Shoveler</string>
+      <string>Red-crested Pochard</string>
+      <string>Pochard</string>
+      <string>Ring-necked Duck</string>
+      <string>Ferruginous Duck</string>
+      <string>Tufted Duck</string>
+      <string>Scaup</string>
+      <string>Lesser Scaup</string>
+      <string>Eider</string>
+      <string>King Eider</string>
+      <string>Long-tailed Duck</string>
+      <string>Common Scoter</string>
+      <string>Surf Scoter</string>
+      <string>Velvet Scoter</string>
+      <string>Goldeneye</string>
+      <string>Smew</string>
+      <string>Red-breasted Merganser</string>
+      <string>Goosander</string>
+      <string>Ruddy Duck</string>
+    </array>
+    <key>Gamebirds</key>
+    <array>
+      <string>Helmeted Guineafowl</string>
+      <string>Quail</string>
+      <string>Red-legged Partridge</string>
+      <string>Red Grouse</string>
+      <string>Ptarmigan</string>
+      <string>Black Grouse</string>
+      <string>Capercaillie</string>
+      <string>Grey Partridge</string>
+      <string>Reeves's Pheasant</string>
+      <string>Pheasant</string>
+      <string>Lady Amherst's Pheasant</string>
+      <string>Golden Pheasant</string>
+      <string>Indian Peafowl</string>
+    </array>
+    <key>Divers</key>
+    <array>
+      <string>Red-throated Diver</string>
+      <string>Black-throated Diver</string>
+      <string>Great Northern Diver</string>
+    </array>
+    <key>Seabirds</key>
+    <array>
+      <string>Fulmar</string>
+      <string>Manx Shearwater</string>
+      <string>Balearic Shearwater</string>
+      <string>Storm Petrel</string>
+      <string>Leach's Petrel</string>
+      <string>Gannet</string>
+      <string>Cormorant</string>
+      <string>Shag</string>
+    </array>
+    <key>Waterbirds</key>
+    <array>
+      <string>Bittern</string>
+      <string>Little Bittern</string>
+      <string>Cattle Egret</string>
+      <string>Little Egret</string>
+      <string>Great White Egret</string>
+      <string>Grey Heron</string>
+      <string>Purple Heron</string>
+      <string>Glossy Ibis</string>
+      <string>Spoonbill</string>
+    </array>
+    <key>Grebes</key>
+    <array>
+      <string>Little Grebe</string>
+      <string>Great Crested Grebe</string>
+      <string>Red-necked Grebe</string>
+      <string>Slavonian Grebe</string>
+      <string>Black-necked Grebe</string>
+    </array>
+    <key>Raptors</key>
+    <array>
+      <string>Honey-buzzard</string>
+      <string>Red Kite</string>
+      <string>White-tailed Eagle</string>
+      <string>Marsh Harrier</string>
+      <string>Hen Harrier</string>
+      <string>Montagu's Harrier</string>
+      <string>Goshawk</string>
+      <string>Sparrowhawk</string>
+      <string>Harris's Hawk</string>
+      <string>Buzzard</string>
+      <string>Rough-legged Buzzard</string>
+      <string>Golden Eagle</string>
+      <string>Osprey</string>
+    </array>
+    <key>Crakes and rails</key>
+    <array>
+      <string>Water Rail</string>
+      <string>Spotted Crake</string>
+      <string>Corncrake</string>
+      <string>Moorhen</string>
+      <string>Coot</string>
+    </array>
+    <key>Cranes and bustards</key>
+    <array>
+      <string>Crane</string>
+      <string>Great Bustard</string>
+    </array>
+    <key>Waders</key>
+    <array>
+      <string>Stone-curlew</string>
+      <string>Black-winged Stilt</string>
+      <string>Avocet</string>
+      <string>Oystercatcher</string>
+      <string>Golden Plover</string>
+      <string>Grey Plover</string>
+      <string>Lapwing</string>
+      <string>Little Ringed Plover</string>
+      <string>Ringed Plover</string>
+      <string>Kentish Plover</string>
+      <string>Dotterel</string>
+      <string>Whimbrel</string>
+      <string>Curlew</string>
+      <string>Black-tailed Godwit</string>
+      <string>Bar-tailed Godwit</string>
+      <string>Turnstone</string>
+      <string>Knot</string>
+      <string>Ruff</string>
+      <string>Curlew Sandpiper</string>
+      <string>Temminck's Stint</string>
+      <string>Sanderling</string>
+      <string>Dunlin</string>
+      <string>Purple Sandpiper</string>
+      <string>Little Stint</string>
+      <string>Red-necked Phalarope</string>
+      <string>Grey Phalarope</string>
+      <string>Common Sandpiper</string>
+      <string>Green Sandpiper</string>
+      <string>Spotted Redshank</string>
+      <string>Greenshank</string>
+      <string>Wood Sandpiper</string>
+      <string>Redshank</string>
+      <string>Jack Snipe</string>
+      <string>Woodcock</string>
+      <string>Snipe</string>
+    </array>
+    <key>Skuas</key>
+    <array>
+      <string>Pomarine Skua</string>
+      <string>Arctic Skua</string>
+      <string>Great Skua</string>
+    </array>
+    <key>Auks</key>
+    <array>
+      <string>Puffin</string>
+      <string>Black Guillemot</string>
+      <string>Razorbill</string>
+      <string>Little Auk</string>
+      <string>Guillemot</string>
+    </array>
+    <key>Terns</key>
+    <array>
+      <string>Little Tern</string>
+      <string>Black Tern</string>
+      <string>Sandwich Tern</string>
+      <string>Common Tern</string>
+      <string>Roseate Tern</string>
+      <string>Arctic Tern</string>
+    </array>
+    <key>Gulls</key>
+    <array>
+      <string>Kittiwake</string>
+      <string>Black-headed Gull</string>
+      <string>Little Gull</string>
+      <string>Mediterranean Gull</string>
+      <string>Common Gull</string>
+      <string>Ring-billed Gull</string>
+      <string>Lesser Black-backed Gull</string>
+      <string>Herring Gull</string>
+      <string>Yellow-legged Gull</string>
+      <string>Caspian Gull</string>
+      <string>Iceland Gull</string>
+      <string>Glaucous Gull</string>
+      <string>Great Black-backed Gull</string>
+    </array>
+    <key>Pigeons</key>
+    <array>
+      <string>Rock Dove</string>
+      <string>Stock Dove</string>
+      <string>Woodpigeon</string>
+      <string>Collared Dove</string>
+      <string>Turtle Dove</string>
+    </array>
+    <key>Turacos</key>
+    <array/>
+    <key>Cuckoos</key>
+    <array>
+      <string>Cuckoo</string>
+    </array>
+    <key>Owls and nightjars</key>
+    <array>
+      <string>Barn Owl</string>
+      <string>Snowy Owl</string>
+      <string>Eurasian Eagle-Owl</string>
+      <string>Little Owl</string>
+      <string>Tawny Owl</string>
+      <string>Long-eared Owl</string>
+      <string>Short-eared Owl</string>
+      <string>Nightjar</string>
+    </array>
+    <key>Swifts</key>
+    <array>
+      <string>Swift</string>
+    </array>
+    <key>Kingfishers and allies</key>
+    <array>
+      <string>Hoopoe</string>
+      <string>Kingfisher</string>
+    </array>
+    <key>Woodpeckers</key>
+    <array>
+      <string>Wryneck</string>
+      <string>Green Woodpecker</string>
+      <string>Great Spotted Woodpecker</string>
+      <string>Lesser Spotted Woodpecker</string>
+    </array>
+    <key>Falcons</key>
+    <array>
+      <string>Kestrel</string>
+      <string>Merlin</string>
+      <string>Hobby</string>
+      <string>Peregrine</string>
+    </array>
+    <key>Parrots and allies</key>
+    <array>
+      <string>Ring-necked Parakeet</string>
+    </array>
+    <key>Orioles and shrikes</key>
+    <array>
+      <string>Golden Oriole</string>
+      <string>Red-backed Shrike</string>
+      <string>Great Grey Shrike</string>
+    </array>
+    <key>Crows</key>
+    <array>
+      <string>Chough</string>
+      <string>Magpie</string>
+      <string>Jay</string>
+      <string>Jackdaw</string>
+      <string>Rook</string>
+      <string>Carrion Crow</string>
+      <string>Hooded Crow</string>
+      <string>Raven</string>
+    </array>
+    <key>Crests and tits</key>
+    <array>
+      <string>Goldcrest</string>
+      <string>Firecrest</string>
+      <string>Blue Tit</string>
+      <string>Great Tit</string>
+      <string>Crested Tit</string>
+      <string>Coal Tit</string>
+      <string>Willow Tit</string>
+      <string>Marsh Tit</string>
+      <string>Bearded Tit</string>
+    </array>
+    <key>Larks</key>
+    <array>
+      <string>Woodlark</string>
+      <string>Skylark</string>
+      <string>Shore Lark</string>
+    </array>
+    <key>Hirundines</key>
+    <array>
+      <string>Sand Martin</string>
+      <string>Swallow</string>
+      <string>House Martin</string>
+    </array>
+    <key>Cetti's Warbler and Long-tailed Tit</key>
+    <array>
+      <string>Cetti's Warbler</string>
+      <string>Long-tailed Tit</string>
+    </array>
+    <key>Warblers</key>
+    <array>
+      <string>Pallas's Warbler</string>
+      <string>Yellow-browed Warbler</string>
+      <string>Wood Warbler</string>
+      <string>Chiffchaff</string>
+      <string>Willow Warbler</string>
+      <string>Blackcap</string>
+      <string>Garden Warbler</string>
+      <string>Lesser Whitethroat</string>
+      <string>Whitethroat</string>
+      <string>Dartford Warbler</string>
+      <string>Grasshopper Warbler</string>
+      <string>Savi's Warbler</string>
+      <string>Icterine Warbler</string>
+      <string>Sedge Warbler</string>
+      <string>Marsh Warbler</string>
+      <string>Reed Warbler</string>
+      <string>Fan-tailed Warbler</string>
+    </array>
+    <key>Waxwing, Nuthatch, treecreepers and Wren</key>
+    <array>
+      <string>Waxwing</string>
+      <string>Nuthatch</string>
+      <string>Treecreeper</string>
+      <string>Short-toed Treecreeper</string>
+      <string>Wren</string>
+    </array>
+    <key>Starlings and thrushes</key>
+    <array>
+      <string>Starling</string>
+      <string>Dipper</string>
+      <string>Ring Ouzel</string>
+      <string>Blackbird</string>
+      <string>Fieldfare</string>
+      <string>Song Thrush</string>
+      <string>Redwing</string>
+      <string>Mistle Thrush</string>
+    </array>
+    <key>Flycatchers and chats</key>
+    <array>
+      <string>Spotted Flycatcher</string>
+      <string>Robin</string>
+      <string>Nightingale</string>
+      <string>Pied Flycatcher</string>
+      <string>Black Redstart</string>
+      <string>Redstart</string>
+      <string>Whinchat</string>
+      <string>Stonechat</string>
+      <string>Wheatear</string>
+    </array>
+    <key>Dunnock, sparrows and estrilids</key>
+    <array>
+      <string>Dunnock</string>
+      <string>House Sparrow</string>
+      <string>Tree Sparrow</string>
+    </array>
+    <key>Wagtails and pipits</key>
+    <array>
+      <string>Yellow Wagtail</string>
+      <string>Grey Wagtail</string>
+      <string>Pied/White Wagtail</string>
+      <string>Tree Pipit</string>
+      <string>Meadow Pipit</string>
+      <string>Rock Pipit</string>
+      <string>Water Pipit</string>
+    </array>
+    <key>Finches</key>
+    <array>
+      <string>Brambling</string>
+      <string>Chaffinch</string>
+      <string>Hawfinch</string>
+      <string>Common Rosefinch</string>
+      <string>Bullfinch</string>
+      <string>Greenfinch</string>
+      <string>Linnet</string>
+      <string>Twite</string>
+      <string>Lesser Redpoll</string>
+      <string>Common Redpoll</string>
+      <string>Arctic Redpoll</string>
+      <string>Scottish Crossbill</string>
+      <string>Parrot Crossbill</string>
+      <string>unidentified crossbill</string>
+      <string>Goldfinch</string>
+      <string>Serin</string>
+      <string>Siskin</string>
+    </array>
+    <key>Buntings and New World sparrows</key>
+    <array>
+      <string>Snow Bunting</string>
+      <string>Lapland Bunting</string>
+      <string>Yellowhammer</string>
+      <string>Cirl Bunting</string>
+      <string>Reed Bunting</string>
+      <string>Corn Bunting</string>
+    </array>
+    <key>Icterids and Parulids</key>
+    <array/>
+  </dict>
+</plist>

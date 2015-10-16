@@ -1,6 +1,7 @@
 package org.spawny.atlasmaps;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Iain Downie on 30/09/2015.
@@ -51,7 +52,7 @@ public class Utilities {
     }
 
 
-    public static ArrayList<String> bouGroupings(){
+    public static ArrayList<String> bouGroupings() {
         ArrayList<String> groupings = new ArrayList<String>();
         groupings.add("Wildfowl");
         groupings.add("Gamebirds");
@@ -93,6 +94,49 @@ public class Utilities {
         groupings.add("Icterids and Parulids");
         return groupings;
     }
-    
+
+    public static HashMap<String, String> bouGroupingsColours() {
+        HashMap<String, String> groupings = new HashMap<String, String>();
+        groupings.put("Wildfowl", "99CCBB");
+        groupings.put("Gamebirds", "FFCC99");
+        groupings.put("Divers", "66CCCC");
+        groupings.put("Seabirds", "3399CC");
+        groupings.put("Waterbirds", "99FFCC");
+        groupings.put("Grebes", "66CCCC");
+        groupings.put("Raptors", "996600");
+        groupings.put("Crakes and rails", "6699CC");
+        groupings.put("Cranes and bustards", "99FFCC");
+        groupings.put("Waders", "6699CC");
+        groupings.put("Skuas", "3333CC");
+        groupings.put("Auks", "666699");
+        groupings.put("Terns", "3333CC");
+        groupings.put("Gulls", "3333CC");
+        groupings.put("Pigeons", "FFCCCC");
+        groupings.put("Turacos", "FFCCCC");
+        groupings.put("Cuckoos", "FFCCCC");
+        groupings.put("Owls and nightjars", "999999");
+        groupings.put("Swifts", "339999");
+        groupings.put("Kingfishers and allies", "339999");
+        groupings.put("Woodpeckers", "336666");
+        groupings.put("Falcons", "996600");
+        groupings.put("Parrots and allies", "FF9966");
+        groupings.put("Orioles and shrikes", "FF9966");
+        groupings.put("Crows", "FF9966");
+        groupings.put("Crests and tits", "FFFF66");
+        groupings.put("Larks", "999933");
+        groupings.put("Hirundines", "999933");
+        groupings.put("Cetti's Warbler and Long-tailed Tit", "FFFF66");
+        groupings.put("Warblers", "CCCC33");
+        groupings.put("Waxwing, Nuthatch, treecreepers and Wren", "666600");
+        groupings.put("Starlings and thrushes", "FF9966");
+        groupings.put("Flycatchers and chats", "FFFF33");
+        groupings.put("Dunnock, sparrows and estrilids", "666600");
+        groupings.put("Wagtails and pipits", "999933");
+        groupings.put("Finches", "CC3300");
+        groupings.put("Buntings and New World sparrows", "CC6633");
+        groupings.put("Icterids and Parulids", "CCCCCC");
+        return groupings;
+    }
+
 
 }

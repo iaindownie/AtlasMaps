@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -25,15 +26,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private LinkedHashMap<String, List<String>> expandableListDetail;
 
     private ArrayList<String> originalList;
+    private HashMap<String, String> groupsParallel;
 
     public ExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                 LinkedHashMap<String, List<String>> expandableListDetail) {
+                                 LinkedHashMap<String, List<String>> expandableListDetail, HashMap groupsParallel) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
 
         this.originalList = new ArrayList<>();
         this.originalList.addAll(expandableListTitle);
+        this.groupsParallel = groupsParallel;
 
     }
 
@@ -96,6 +99,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
+        String group = (String)this.groupsParallel.get(listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -105,6 +109,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+        View groupTab = (View) convertView.findViewById(R.id.group_tab);
+        groupTab.setBackgroundColor(Color.parseColor("#" + Utilities.bouGroupingsColours().get(group)));
+
         /*LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aGroupItem);
         if(listPosition%2==0){
             linearLayout.setBackgroundColor(Color.parseColor("#CCCCCC"));

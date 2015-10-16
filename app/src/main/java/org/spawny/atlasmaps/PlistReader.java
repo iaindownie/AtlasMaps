@@ -103,7 +103,7 @@ public class PlistReader {
 
     }
 
-    public HashMap getBouListAsHashMap(Context context) throws XmlParseException, IOException {
+    public LinkedHashMap getBouListAsHashMap(Context context) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
         try {
             //In order to access files stored in Asset folder you need AssetManager
@@ -112,7 +112,7 @@ public class PlistReader {
             BufferedReader br = null;
             try {
                 //inputStream = assetManager.open("species_atlas.plist");
-                inputStream = assetManager.open("bou_all_ordered.plist");
+                inputStream = assetManager.open("bou_atlas_ordered.plist");
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -130,7 +130,19 @@ public class PlistReader {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return hMap;
+
+        LinkedHashMap lhMap = new LinkedHashMap();
+        ArrayList groupings = Utilities.bouGroupings();
+        for(int i = 0; i < groupings.size(); i++){
+            String aGroup = (String)groupings.get(i);
+            if(hMap.containsKey(aGroup)){
+                lhMap.put(aGroup, (List)hMap.get(aGroup));
+            }
+        }
+
+        return lhMap;
 
     }
+
+
 }

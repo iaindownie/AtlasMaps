@@ -48,14 +48,15 @@ public class MainActivity extends Activity implements
     PlistReader plr = new PlistReader();
     HashMap mapSet = null;
     TreeMap mapEnglishNamesAndSpeciesCodes = null;
-    TreeMap mapSpeciesCodesAndEnglishNames = null;
+    //TreeMap mapSpeciesCodesAndEnglishNames = null;
     InputMethodManager imm;
 
     private int originalPosition = 0;
 
     private static final String TAG = "MainActivity";
 
-    HashMap bouListingsAsHashMap = null;
+    LinkedHashMap bouListingsAsLinkedHashMap = null;
+    HashMap groupsParallel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +70,21 @@ public class MainActivity extends Activity implements
         try {
             mapSet = plr.getMapsAsHashMap(myContext, false);
             mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(myContext);
-            mapSpeciesCodesAndEnglishNames = new TreeMap<>();
-            ArrayList codedSpecies = new ArrayList<>(mapEnglishNamesAndSpeciesCodes.keySet());
-            for (int i = 0; i < codedSpecies.size(); i++) {
-                String speciesName = (String) codedSpecies.get(i);
-                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
-                mapSpeciesCodesAndEnglishNames.put(new Integer(speciesCode), speciesName);
-            }
-            expandableListDetail = ExpandableListDataPump.getData(this, mapEnglishNamesAndSpeciesCodes,
-                    mapSpeciesCodesAndEnglishNames, mapSet);
+            //mapSpeciesCodesAndEnglishNames = new TreeMap<>();
+            //ArrayList codedSpecies = new ArrayList<>(mapEnglishNamesAndSpeciesCodes.keySet());
+            //for (int i = 0; i < codedSpecies.size(); i++) {
+            //    String speciesName = (String) codedSpecies.get(i);
+            //    String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
+            //    mapSpeciesCodesAndEnglishNames.put(new Integer(speciesCode), speciesName);
+            //}
+            bouListingsAsLinkedHashMap = plr.getBouListAsHashMap(myContext);
+            System.out.println("bouListingsAsLinkedHashMap" + bouListingsAsLinkedHashMap.size());
+            System.out.println("bouListingsAsLinkedHashMap" + bouListingsAsLinkedHashMap.values().size());
 
-            bouListingsAsHashMap = plr.getBouListAsHashMap(myContext);
-            System.out.println("bouListingsAsHashMap:" + bouListingsAsHashMap.toString());
+            expandableListDetail = ExpandableListDataPump.getData(mapEnglishNamesAndSpeciesCodes,
+                    mapSet, bouListingsAsLinkedHashMap);
+
+            groupsParallel = ExpandableListDataPump.getGroupsParallel();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,7 +111,7 @@ public class MainActivity extends Activity implements
 
 
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
-        expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail);
+        expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail, groupsParallel);
         expandableListView.setAdapter(expandableListAdapter);
 
         expandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {

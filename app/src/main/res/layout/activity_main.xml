@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     tools:context="com.javapapers.android.expandablelistview.app.MainActivity">
 
     <SearchView android:id="@+id/search" android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-        android:divider="#A4C739"
+        android:divider="#A59367"
         android:dividerHeight="0.5dp"
         android:transcriptMode="disabled"
         android:layout_below="@+id/search"/>

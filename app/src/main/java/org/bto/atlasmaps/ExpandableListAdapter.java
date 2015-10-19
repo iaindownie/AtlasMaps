@@ -67,9 +67,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         expandedListTextView.setText(expandedListText);
         //System.out.println(expandedListText);
         LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aListItem);
-        if(expandedListText.startsWith("Breeding")){
+        if (expandedListText.startsWith("Breeding")) {
             linearLayout.setBackgroundColor(Color.parseColor("#FFCC99"));
-        }else{
+        } else {
             linearLayout.setBackgroundColor(Color.parseColor("#99CCFF"));
         }
 
@@ -101,7 +101,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
-        String group = (String)this.groupsParallel.get(listTitle);
+        String group = (String) this.groupsParallel.get(listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -132,35 +132,35 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     /**
      * Method to add search filter
+     *
      * @param query
      */
 
-    public void filterData(String query){
+    public void filterData(String query) {
 
         query = query.toLowerCase();
         Log.v("ExpandableListAdapter", String.valueOf(expandableListTitle.size()));
         expandableListTitle.clear();
 
-        if(query.isEmpty()){
+        if (query.isEmpty()) {
             expandableListTitle.addAll(originalList);
-        }
-        else {
+        } else {
 
-            for(String species: originalList){
+            for (String species : originalList) {
 
                 List<String> speciesList = expandableListTitle;
                 ArrayList<String> newList = new ArrayList<>();
-                    if(species.toLowerCase().contains(query)){
-                        newList.add(species);
-                    }
+                if (species.toLowerCase().contains(query)) {
+                    newList.add(species);
+                }
 
-                if(newList.size() > 0){
+                if (newList.size() > 0) {
                     expandableListTitle.add(species);
                 }
             }
         }
 
-        Log.v("ExpandableListAdapter", String.valueOf(expandableListTitle.size()));
+        //Log.v("ExpandableListAdapter", String.valueOf(expandableListTitle.size()));
         notifyDataSetChanged();
 
     }

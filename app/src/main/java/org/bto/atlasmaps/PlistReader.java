@@ -17,21 +17,21 @@ import xmlwise.Plist;
 import xmlwise.XmlParseException;
 
 /**
+ * Primary class for reading in the PLIST files. Multiple methods
  * Created by Iain Downie on 30/09/2015.
  */
 public class PlistReader {
 
-    public HashMap getMapsAsHashMap(Context context) throws XmlParseException, IOException {
+    public HashMap getMapsAsHashMap(Context context, String filename) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
         HashMap<String, List> refinedMap = new HashMap<>();
-        String thePlist = "mapset.plist";
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
             InputStream inputStream = null;
             BufferedReader br = null;
             try {
-                inputStream = assetManager.open(thePlist);
+                inputStream = assetManager.open(filename);
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -68,9 +68,8 @@ public class PlistReader {
 
     }
 
-    public TreeMap getSpeciesNamesAsTreeMap(Context context) throws XmlParseException, IOException {
+    public TreeMap getSpeciesNamesAsTreeMap(Context context, String filename) throws XmlParseException, IOException {
         TreeMap<String, Object> tMap = null;
-        String thePlist = "species.plist";
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
@@ -78,7 +77,7 @@ public class PlistReader {
             BufferedReader br = null;
             try {
                 //inputStream = assetManager.open("species_atlas.plist");
-                inputStream = assetManager.open(thePlist);
+                inputStream = assetManager.open(filename);
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -103,8 +102,8 @@ public class PlistReader {
     public LinkedHashMap getBouListAsHashMap(Context context, boolean isBook) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
         String thePlist;
-        if(isBook){thePlist = "bou_atlas_ordered.plist";}
-        else{thePlist = "bou_all_ordered.plist";}
+        if(isBook){thePlist = Constants.bouOrderedAtlasSpeciesFile;}
+        else{thePlist = Constants.bouOrderedAllSpeciesFile;}
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
@@ -133,6 +132,7 @@ public class PlistReader {
 
         LinkedHashMap lhMap = new LinkedHashMap();
         ArrayList groupings = Utilities.bouGroupings();
+        System.out.println(groupings.toString());
         for (int i = 0; i < groupings.size(); i++) {
             String aGroup = (String) groupings.get(i);
             if (hMap.containsKey(aGroup)) {

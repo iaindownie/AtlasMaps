@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Utility class to provide global functionality to entire App
  * Created by Iain Downie on 30/09/2015.
  */
 public class Utilities {
 
+    /**
+     * Helper method to pad a species code which has no leading zero's
+     * up to the maximum required of 5 digits
+     *
+     * @param aStr, usually something like 46, 987 or 1075
+     * @return String, usually like 00046, 00987 or 01075
+     */
     public static String padWithNaughts(String aStr) {
         if (aStr.length() == 1) return "0000" + aStr;
         else if (aStr.length() == 2) return "000" + aStr;
@@ -16,6 +24,12 @@ public class Utilities {
         else return aStr;
     }
 
+    /**
+     * Helper method to remove excess zero's at start of species codes
+     *
+     * @param aStr, usually something like 00046, 00987 or 01075
+     * @return String, usually like 46, 987 or 1075
+     */
     public static String removeNaughts(String aStr) {
         if (aStr.length() == 1) return aStr.substring(4);
         else if (aStr.length() == 2) return aStr.substring(3);
@@ -24,6 +38,12 @@ public class Utilities {
         else return aStr;
     }
 
+    /**
+     * Helper method to translate the map filename coding to something sensible
+     *
+     * @param aStr, usually something like "small_00046MSBA20072011_002_0.png"
+     * @return String, usually better english
+     */
     public static String getSensibleMapName(String aStr) {
         if (aStr.contains("BD20072011_")) return "Breeding Distribution 2008-11";
         else if (aStr.contains("WD20072011_")) return "Winter Distribution 2007-11";
@@ -42,6 +62,14 @@ public class Utilities {
         else return aStr;
     }
 
+    /**
+     * Helper method to return a list of Image Strings from list of filenames, primarily
+     * used to reduce volume of data being passed as Serializable in Intents between
+     * the two main activities
+     *
+     * @param aList, ArrayList of filenames
+     * @return ArrayList of reduced names
+     */
     public static ArrayList<String> getImageStringsOnly(ArrayList aList) {
         ArrayList<String> newList = new ArrayList<String>();
         for (int i = 0; i < aList.size(); i++) {
@@ -51,7 +79,11 @@ public class Utilities {
         return newList;
     }
 
-
+    /**
+     * Lookup method holding ordered Strings of main species families
+     *
+     * @return ArrayList of bird species groupings, following standard BOU order
+     */
     public static ArrayList<String> bouGroupings() {
         ArrayList<String> groupings = new ArrayList<String>();
         groupings.add("Wildfowl");
@@ -95,6 +127,12 @@ public class Utilities {
         return groupings;
     }
 
+    /**
+     * Lookup and helper method that holds the colours for each species grouping,
+     * where the colour is used on the ExpandableListView object
+     *
+     * @return ArrayList of bird species groupings & colours, following standard BOU order
+     */
     public static HashMap<String, String> bouGroupingsColours() {
         HashMap<String, String> groupings = new HashMap<String, String>();
         groupings.put("Wildfowl", "99CCBB");

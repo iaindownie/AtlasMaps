@@ -75,7 +75,6 @@ public class MainActivity extends Activity implements
         myContext = this.getApplicationContext();
         prefs = getPreferences(Context.MODE_PRIVATE);
         isBook = prefs.getBoolean("LIST", true);
-        System.out.println("ISD:" + isBook);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         search = (SearchView) findViewById(R.id.search);
@@ -138,11 +137,12 @@ public class MainActivity extends Activity implements
     }
 
     private void performDataPump(boolean isBook) {
-        System.out.println("Calling performDataPump");
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         try {
-            mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(myContext);
-            mapSet = plr.getMapsAsHashMap(myContext);
+            String mapSetFilename = Constants.mapSetFile;
+            String speciesNamesFilename = Constants.bookSpeciesFile;
+            mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(myContext, speciesNamesFilename);
+            mapSet = plr.getMapsAsHashMap(myContext, mapSetFilename);
             LinkedHashMap bouListingsAsLinkedHashMap = plr.getBouListAsHashMap(myContext, isBook);
 
             expandableListDetail = ExpandableListDataPump.getData(mapEnglishNamesAndSpeciesCodes,
@@ -214,6 +214,12 @@ public class MainActivity extends Activity implements
         }
         if (id == R.id.list_switch) {
             this.doToggleSwitch();
+            return true;
+        }
+        if (id == R.id.families) {
+            Intent colourScheme = new Intent(getBaseContext(),
+                    FamilyColours.class);
+            startActivity(colourScheme);
             return true;
         }
 
@@ -307,16 +313,6 @@ public class MainActivity extends Activity implements
         StringBuffer spawny = new StringBuffer();
         spawny.append("Blurb about Bird Atlas 2007-11 app.\n");
         text.setText(spawny.toString());
-        /*
-         * ImageView image = (ImageView) dialog.findViewById(R.id.image);
-		 * image.setImageResource(R.drawable.perfcoach_banner);
-		 * image.setOnClickListener(new View.OnClickListener() { public void
-		 * onClick(View v) { Intent intent = new Intent();
-		 * intent.setAction(Intent.ACTION_VIEW);
-		 * intent.addCategory(Intent.CATEGORY_BROWSABLE);
-		 * intent.setData(Uri.parse("http://www.performancecoaching.me/"));
-		 * startActivity(intent); } });
-		 */
         Button but = (Button) dialog.findViewById(R.id.dismissButton);
         dialog.show();
         but.setOnClickListener(new View.OnClickListener() {

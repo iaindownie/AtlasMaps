@@ -27,18 +27,18 @@ public class ExpandableListDataPump {
         //System.out.println("Grouping:" + groupings.toString());
         ArrayList bouSpecies = new ArrayList();
         for (int i = 0; i < groupings.size(); i++) {
-            String aGroup = (String)groupings.get(i);
-            ArrayList aList = (ArrayList)lhMap.get(aGroup);
+            String aGroup = (String) groupings.get(i);
+            ArrayList aList = (ArrayList) lhMap.get(aGroup);
             for (int j = 0; j < aList.size(); j++) {
-                bouSpecies.add((String)aList.get(j));
+                bouSpecies.add((String) aList.get(j));
                 groupsParallel.put((String) aList.get(j), aGroup);
             }
         }
         //System.out.println("bouSpecies:" + bouSpecies.size() + " " + bouSpecies.toString());
 
         for (int i = 0; i < bouSpecies.size(); i++) {
-            String bouSpeciesName = (String)bouSpecies.get(i);
-            String bouSpeciesCode = Utilities.padWithNaughts((String)mapEnglishNamesAndSpeciesCodes.get(bouSpeciesName));
+            String bouSpeciesName = (String) bouSpecies.get(i);
+            String bouSpeciesCode = Utilities.padWithNaughts((String) mapEnglishNamesAndSpeciesCodes.get(bouSpeciesName));
             List anArray = (ArrayList) mapSet.get(bouSpeciesCode);
             List refinedArray = new ArrayList();
             for (int j = 0; j < anArray.size(); j++) {

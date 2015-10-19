@@ -1,4 +1,4 @@
-package org.bto.atlasmaps;
+package org.bto.atlasmaps.fluff;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,7 +15,6 @@ import org.spawny.atlasmaps.R;
  * Copyright @iaindownie
  * TODO: Add a class header comment!
  */
-
 public class CustomFamilyAdapter extends BaseAdapter {
     String[] a, b;
     private LayoutInflater layoutInflater;

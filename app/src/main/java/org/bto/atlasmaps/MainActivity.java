@@ -23,6 +23,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import org.bto.atlasmaps.fluff.FamilyColours;
 import org.spawny.atlasmaps.BuildConfig;
 import org.spawny.atlasmaps.R;
 
@@ -276,7 +277,6 @@ public class MainActivity extends Activity implements
 
     @Override
     public boolean onClose() {
-        System.out.println("Calling close...");
         expandableListAdapter.filterData("");
         int count = expandableListAdapter.getGroupCount();
         for (int i = 0; i < count; i++)
@@ -310,9 +310,7 @@ public class MainActivity extends Activity implements
         dialog.setContentView(R.layout.about);
         dialog.setTitle("Bird Atlas 2007-11 v" + BuildConfig.VERSION_NAME);
         TextView text = (TextView) dialog.findViewById(R.id.text);
-        StringBuffer spawny = new StringBuffer();
-        spawny.append("Blurb about Bird Atlas 2007-11 app.\n");
-        text.setText(spawny.toString());
+        text.setText("Blurb about Bird Atlas 2007-11 app.\n");
         Button but = (Button) dialog.findViewById(R.id.dismissButton);
         dialog.show();
         but.setOnClickListener(new View.OnClickListener() {
@@ -330,7 +328,7 @@ public class MainActivity extends Activity implements
         dialog.setContentView(R.layout.toggle_species);
         dialog.setTitle("Toggle the species lists");
         TextView text = (TextView) dialog.findViewById(R.id.text);
-        StringBuffer spawny = new StringBuffer();
+        StringBuilder spawny = new StringBuilder();
         if (isBook) {
             spawny.append("Currently viewing PUBLISHED species only\n\n");
         } else {

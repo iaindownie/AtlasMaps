@@ -28,7 +28,7 @@ public class PlistReader {
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
-            InputStream inputStream = null;
+            InputStream inputStream;
             BufferedReader br = null;
             try {
                 inputStream = assetManager.open(filename);
@@ -132,7 +132,6 @@ public class PlistReader {
 
         LinkedHashMap lhMap = new LinkedHashMap();
         ArrayList groupings = Utilities.bouGroupings();
-        System.out.println(groupings.toString());
         for (int i = 0; i < groupings.size(); i++) {
             String aGroup = (String) groupings.get(i);
             if (hMap.containsKey(aGroup)) {

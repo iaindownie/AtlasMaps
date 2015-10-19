@@ -1,4 +1,4 @@
-package org.spawny.atlasmaps;
+package org.bto.atlasmaps;
 
 import java.util.ArrayList;
 import java.util.HashMap;

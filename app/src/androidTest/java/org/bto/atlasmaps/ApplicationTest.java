@@ -1,4 +1,4 @@
-package org.spawny.atlasmaps;
+package org.bto.atlasmaps;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

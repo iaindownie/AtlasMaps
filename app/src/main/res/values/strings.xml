@@ -2,4 +2,10 @@
     <string name="app_name">Bird Atlas 2007-11 Maps</string>
 
     <string name="action_settings">Extra</string>
+
+    <string name="about">About</string>
+    <string name="instructions">Help</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="list_switch">Toggle no. species</string>
+    <string name="toggle_species">Switch lists</string>
 </resources>

@@ -1,15 +1,16 @@
-package org.spawny.atlasmaps;
+package org.bto.atlasmaps;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.spawny.atlasmaps.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,21 +25,20 @@ public class MapDetail extends Activity {
 
     private static final String TAG = "MapDetail";
 
-    private Button leftButton;
-    private Button rightButton;
     private ImageView mImageView;
     private TextView positionInArray;
     private InputStream ims;
     private PhotoViewAttacher mAttacher;
     private int position = 0;
     private ArrayList allMaps;
-    private String aMap;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_view);
 
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        Button leftButton;
+        Button rightButton;
+        String aMap;
 
         mImageView = (ImageView) findViewById(R.id.mapView);
         leftButton = (Button) findViewById(R.id.leftbutton);
@@ -51,21 +51,29 @@ public class MapDetail extends Activity {
         aMap = b.containsKey("MAP") ? b.getString("MAP") : "blank.png";
         allMaps = (ArrayList) b.getSerializable("ALLMAPS");
         position = b.getInt("POSITION");
-        //System.out.println("AllMaps:" + allMaps.toString());
-        //System.out.println("AMap:" + aMap);
         if (aMap.length() == 0) aMap = "blank.png";
         String title = b.containsKey("TITLE") ? b.getString("TITLE") : "Unknown Species";
         setTitle(title);
 
+        if(allMaps.size()<2){
+            leftButton.setVisibility(View.GONE);
+            rightButton.setVisibility(View.GONE);
+        }
+
         try {
-            // get input stream
+            // get input stream from assets folder
             ims = getAssets().open("maps/" + aMap);
             // load image as Drawable
             Drawable d = Drawable.createFromStream(ims, null);
             // set image to ImageView
             mImageView.setImageDrawable(d);
+            // add to PhotoViewAttacher
             mAttacher = new PhotoViewAttacher(mImageView);
-            positionInArray.setText((position + 1) + "/" + allMaps.size());
+            StringBuilder strBuild = new StringBuilder();
+            strBuild.append((position + 1));
+            strBuild.append("/");
+            strBuild.append(allMaps.size());
+            positionInArray.setText(strBuild);
 
         } catch (IOException ex) {
             return;
@@ -75,25 +83,29 @@ public class MapDetail extends Activity {
             public void onClick(View v) {
                 //Log.i(TAG, "Button Press : LeftButton");
                 try {
-                    // get input stream
+                    // get input stream from assets folder
                     if (position == 0) {
                         position = allMaps.size() - 1;
                     } else {
                         position -= 1;
                     }
-                    //System.out.println("Position:" + position);
                     ims = getAssets().open("maps/" + (String) allMaps.get(position));
 
-                    positionInArray.setText((position + 1) + "/" + allMaps.size());
+                    StringBuilder strBuild = new StringBuilder();
+                    strBuild.append((position + 1));
+                    strBuild.append("/");
+                    strBuild.append(allMaps.size());
+                    positionInArray.setText(strBuild);
 
                     // load image as Drawable
                     Drawable d = Drawable.createFromStream(ims, null);
                     // set image to ImageView
                     mImageView.setImageDrawable(d);
+                    // add to PhotoViewAttacher
                     mAttacher = new PhotoViewAttacher(mImageView);
 
                 } catch (IOException ex) {
-                    return;
+                    ex.printStackTrace();
                 }
             }
         });
@@ -102,25 +114,29 @@ public class MapDetail extends Activity {
             public void onClick(View v) {
                 //Log.i(TAG, "Button Press : RightButton");
                 try {
-                    // get input stream
+                    // get input stream from assets folder
                     if (position == allMaps.size() - 1) {
                         position = 0;
                     } else {
                         position += 1;
                     }
-                    //System.out.println("Position:" + position);
                     ims = getAssets().open("maps/" + (String) allMaps.get(position));
 
-                    positionInArray.setText((position + 1) + "/" + allMaps.size());
+                    StringBuilder strBuild = new StringBuilder();
+                    strBuild.append((position + 1));
+                    strBuild.append("/");
+                    strBuild.append(allMaps.size());
+                    positionInArray.setText(strBuild);
 
                     // load image as Drawable
                     Drawable d = Drawable.createFromStream(ims, null);
                     // set image to ImageView
                     mImageView.setImageDrawable(d);
+                    // add to PhotoViewAttacher
                     mAttacher = new PhotoViewAttacher(mImageView);
 
                 } catch (IOException ex) {
-                    return;
+                    ex.printStackTrace();
                 }
             }
         });

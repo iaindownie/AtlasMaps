@@ -1,4 +1,4 @@
-package org.spawny.atlasmaps;
+package org.bto.atlasmaps;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.spawny.atlasmaps.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,15 +111,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
-        View groupTab = (View) convertView.findViewById(R.id.group_tab);
+        View groupTab = convertView.findViewById(R.id.group_tab);
         groupTab.setBackgroundColor(Color.parseColor("#" + Utilities.bouGroupingsColours().get(group)));
 
-        /*LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aGroupItem);
-        if(listPosition%2==0){
-            linearLayout.setBackgroundColor(Color.parseColor("#CCCCCC"));
-        }else{
-            linearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }*/
 
         return convertView;
     }

@@ -1,4 +1,4 @@
-package org.spawny.atlasmaps;
+package org.bto.atlasmaps;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -21,16 +21,17 @@ import xmlwise.XmlParseException;
  */
 public class PlistReader {
 
-    public HashMap getMapsAsHashMap(Context context, boolean sensibleNames) throws XmlParseException, IOException {
+    public HashMap getMapsAsHashMap(Context context) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
         HashMap<String, List> refinedMap = new HashMap<>();
+        String thePlist = "mapset.plist";
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
             InputStream inputStream = null;
             BufferedReader br = null;
             try {
-                inputStream = assetManager.open("mapset.plist");
+                inputStream = assetManager.open(thePlist);
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -58,12 +59,7 @@ public class PlistReader {
             for (int j = 0; j < anArray.size(); j++) {
                 b = (ArrayList) anArray.get(j);
                 for (int z = 0; z < b.size(); z++) {
-                    if (sensibleNames) {
-                        species2.add(Utilities.getSensibleMapName(b.get(z).toString()));
-                    } else {
-                        species2.add(b.get(z).toString());
-                    }
-
+                    species2.add(b.get(z).toString());
                 }
             }
             refinedMap.put((String) alphaSpecies.get(i), species2);
@@ -74,6 +70,7 @@ public class PlistReader {
 
     public TreeMap getSpeciesNamesAsTreeMap(Context context) throws XmlParseException, IOException {
         TreeMap<String, Object> tMap = null;
+        String thePlist = "species.plist";
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
@@ -81,7 +78,7 @@ public class PlistReader {
             BufferedReader br = null;
             try {
                 //inputStream = assetManager.open("species_atlas.plist");
-                inputStream = assetManager.open("species.plist");
+                inputStream = assetManager.open(thePlist);
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -103,8 +100,11 @@ public class PlistReader {
 
     }
 
-    public LinkedHashMap getBouListAsHashMap(Context context) throws XmlParseException, IOException {
+    public LinkedHashMap getBouListAsHashMap(Context context, boolean isBook) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
+        String thePlist;
+        if(isBook){thePlist = "bou_atlas_ordered.plist";}
+        else{thePlist = "bou_all_ordered.plist";}
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();
@@ -112,7 +112,7 @@ public class PlistReader {
             BufferedReader br = null;
             try {
                 //inputStream = assetManager.open("species_atlas.plist");
-                inputStream = assetManager.open("bou_atlas_ordered.plist");
+                inputStream = assetManager.open(thePlist);
                 //read it with BufferedReader
                 br = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder sb = new StringBuilder();
@@ -133,10 +133,10 @@ public class PlistReader {
 
         LinkedHashMap lhMap = new LinkedHashMap();
         ArrayList groupings = Utilities.bouGroupings();
-        for(int i = 0; i < groupings.size(); i++){
-            String aGroup = (String)groupings.get(i);
-            if(hMap.containsKey(aGroup)){
-                lhMap.put(aGroup, (List)hMap.get(aGroup));
+        for (int i = 0; i < groupings.size(); i++) {
+            String aGroup = (String) groupings.get(i);
+            if (hMap.containsKey(aGroup)) {
+                lhMap.put(aGroup, (List) hMap.get(aGroup));
             }
         }
 

@@ -2,10 +2,12 @@ package org.bto.atlasmaps;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -45,6 +47,7 @@ public class MainActivity extends Activity implements
         SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
     private SearchView search;
+    ProgressDialog myProgress;
 
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
@@ -119,12 +122,14 @@ public class MainActivity extends Activity implements
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+                new MyAsync().execute(groupPosition, childPosition);
+                /*
                 String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(groupPosition));
                 ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
                 String mapName = (String) aBunchOfMaps.get(childPosition);
                 originalPosition = groupPosition;
-                Intent mapView = new Intent(getBaseContext(),
-                        MapDetail.class);
+                Intent mapView = new Intent(getBaseContext(),MapDetailViewPager.class);
+                //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
                 Bundle b = new Bundle();
                 b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
                 b.putString("TITLE", expandableListTitle.get(groupPosition));
@@ -132,6 +137,7 @@ public class MainActivity extends Activity implements
                 b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
                 mapView.putExtras(b);
                 startActivity(mapView);
+                */
                 return false;
             }
         });
@@ -371,6 +377,51 @@ public class MainActivity extends Activity implements
                 dialog.dismiss();
             }
         });
+    }
+
+    private class MyAsync extends AsyncTask<Integer, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+            myProgress = new ProgressDialog(MainActivity.this);
+            myProgress.setTitle("Please Wait..");
+            myProgress.setMessage("Loading all maps for this species...");
+            myProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            myProgress.setCancelable(false);
+            myProgress.show();
+        }
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+            //try {
+                //Thread.sleep(3000);
+                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(params[0]));
+                ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
+                String mapName = (String) aBunchOfMaps.get(params[1]);
+                originalPosition = params[0];
+                Intent mapView = new Intent(getBaseContext(),MapDetailViewPager.class);
+                //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
+                Bundle b = new Bundle();
+                b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+                b.putString("TITLE", expandableListTitle.get(params[0]));
+                b.putInt("POSITION", params[1]);
+                b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
+                mapView.putExtras(b);
+                startActivity(mapView);
+            //} catch (InterruptedException e) {
+
+            //    e.printStackTrace();
+            //}
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            myProgress.dismiss();
+        }
     }
 
 }

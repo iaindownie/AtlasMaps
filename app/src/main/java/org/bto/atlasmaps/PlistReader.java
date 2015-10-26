@@ -102,8 +102,11 @@ public class PlistReader {
     public LinkedHashMap getBouListAsHashMap(Context context, boolean isBook) throws XmlParseException, IOException {
         HashMap<String, Object> hMap = null;
         String thePlist;
-        if(isBook){thePlist = Constants.bouOrderedAtlasSpeciesFile;}
-        else{thePlist = Constants.bouOrderedAllSpeciesFile;}
+        if (isBook) {
+            thePlist = Constants.bouOrderedAtlasSpeciesFile;
+        } else {
+            thePlist = Constants.bouOrderedAllSpeciesFile;
+        }
         try {
             //In order to access files stored in Asset folder you need AssetManager
             AssetManager assetManager = context.getResources().getAssets();

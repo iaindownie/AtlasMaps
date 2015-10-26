@@ -18,36 +18,60 @@ public class ExpandableListDataPump {
 
     public static LinkedHashMap<String, List<String>> getData(TreeMap mapEnglishNamesAndSpeciesCodes,
                                                               HashMap mapSet,
-                                                              LinkedHashMap lhMap)
+                                                              LinkedHashMap lhMap,
+                                                              boolean isBOU)
             throws IOException, XmlParseException {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<>();
 
-
-        ArrayList groupings = new ArrayList(lhMap.keySet());
-        //System.out.println("Grouping:" + groupings.toString());
-        ArrayList bouSpecies = new ArrayList();
-        for (int i = 0; i < groupings.size(); i++) {
-            String aGroup = (String) groupings.get(i);
-            ArrayList aList = (ArrayList) lhMap.get(aGroup);
-            for (int j = 0; j < aList.size(); j++) {
-                bouSpecies.add((String) aList.get(j));
-                groupsParallel.put((String) aList.get(j), aGroup);
+        if (isBOU) {
+            ArrayList groupings = new ArrayList(lhMap.keySet());
+            //System.out.println("Grouping:" + groupings.toString());
+            ArrayList bouSpecies = new ArrayList();
+            for (int i = 0; i < groupings.size(); i++) {
+                String aGroup = (String) groupings.get(i);
+                ArrayList aList = (ArrayList) lhMap.get(aGroup);
+                for (int j = 0; j < aList.size(); j++) {
+                    bouSpecies.add((String) aList.get(j));
+                    groupsParallel.put((String) aList.get(j), aGroup);
+                }
             }
-        }
-        //System.out.println("bouSpecies:" + bouSpecies.size() + " " + bouSpecies.toString());
 
-        for (int i = 0; i < bouSpecies.size(); i++) {
-            String bouSpeciesName = (String) bouSpecies.get(i);
-            String bouSpeciesCode = Utilities.padWithNaughts((String) mapEnglishNamesAndSpeciesCodes.get(bouSpeciesName));
-            List anArray = (ArrayList) mapSet.get(bouSpeciesCode);
-            List refinedArray = new ArrayList();
-            for (int j = 0; j < anArray.size(); j++) {
-                refinedArray.add(Utilities.getSensibleMapName((String) anArray.get(j)));
+            for (int i = 0; i < bouSpecies.size(); i++) {
+                String bouSpeciesName = (String) bouSpecies.get(i);
+                String bouSpeciesCode = Utilities.padWithNaughts((String) mapEnglishNamesAndSpeciesCodes.get(bouSpeciesName));
+                List anArray = (ArrayList) mapSet.get(bouSpeciesCode);
+                List refinedArray = new ArrayList();
+                for (int j = 0; j < anArray.size(); j++) {
+                    refinedArray.add(Utilities.getSensibleMapName((String) anArray.get(j)));
+                }
+                expandableListDetail.put(bouSpeciesName, refinedArray);
             }
-            expandableListDetail.put(bouSpeciesName, refinedArray);
+            return expandableListDetail;
+
+        } else {
+            TreeMap mapSpeciesCodesAndEnglishNames = new TreeMap<>();
+            ArrayList codedSpecies = new ArrayList<>(mapEnglishNamesAndSpeciesCodes.keySet());
+            for (int i = 0; i < codedSpecies.size(); i++) {
+                String speciesName = (String) codedSpecies.get(i);
+                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
+                mapSpeciesCodesAndEnglishNames.put(new Integer(speciesCode), speciesName);
+            }
+            ArrayList aList = new ArrayList(mapEnglishNamesAndSpeciesCodes.keySet());
+            for (int i = 0; i < aList.size(); i++) {
+                String speciesName = (String) aList.get(i);
+                String paddedSpeciesCode = Utilities.padWithNaughts((String) mapEnglishNamesAndSpeciesCodes.get(speciesName));
+                List anArray = (ArrayList) mapSet.get(paddedSpeciesCode);
+                List refinedArray = new ArrayList();
+                for (int j = 0; j < anArray.size(); j++) {
+                    refinedArray.add(Utilities.getSensibleMapName((String) anArray.get(j)));
+                }
+                expandableListDetail.put(speciesName, refinedArray);
+            }
+
+            return expandableListDetail;
         }
-        //System.out.println("groupsParallel:" + groupsParallel.size() + " " + groupsParallel.toString());
-        return expandableListDetail;
+
+
     }
 
     public static HashMap getGroupsParallel() {

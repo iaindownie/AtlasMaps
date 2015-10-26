@@ -34,7 +34,7 @@ public class MapDetailViewPager extends Activity {
     private ArrayList allMaps;
     private ArrayList imageHolder;
 
-    ViewPager view = null;
+    ViewPager vPager = null;
 
     int img[] = {R.drawable.right_arrow, R.drawable.splash_640_960};
 
@@ -44,15 +44,15 @@ public class MapDetailViewPager extends Activity {
         setContentView(R.layout.map_view_pager);
 
         positionInArray = (TextView) findViewById(R.id.locEx);
-        String aMap;
+        //String aMap;
 
         Intent intent = this.getIntent();
         Bundle b = intent.getExtras();
-        aMap = b.containsKey("MAP") ? b.getString("MAP") : "blank.png";
+        //aMap = b.containsKey("MAP") ? b.getString("MAP") : "blank.png";
         allMaps = (ArrayList) b.getSerializable("ALLMAPS");
         //System.out.println("AllMaps:" + allMaps.toString());
         position = b.getInt("POSITION");
-        if (aMap.length() == 0) aMap = "blank.png";
+        //if (aMap.length() == 0) aMap = "blank.png";
         String title = b.containsKey("TITLE") ? b.getString("TITLE") : "Unknown Species";
         setTitle(title);
 
@@ -77,12 +77,44 @@ public class MapDetailViewPager extends Activity {
         }
 
 
-        view = (ViewPager) findViewById(R.id.viewpager);
+        vPager = (ViewPager) findViewById(R.id.viewpager);
 
-        view.setAdapter(new MyAdapter());
-        view.setCurrentItem(position);
-        positionInArray.setText("Some text");
+        vPager.setAdapter(new MyAdapter());
+        vPager.setCurrentItem(position);
+
+        StringBuilder strBuild = new StringBuilder();
+        strBuild.append((position + 1));
+        strBuild.append("/");
+        strBuild.append(allMaps.size());
+        positionInArray.setText(strBuild);
+
+        vPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            private int currentPage;
+
+            @Override
+            public void onPageSelected(int pos) {
+                currentPage = pos;
+                StringBuilder strBuild = new StringBuilder();
+                strBuild.append((pos + 1));
+                strBuild.append("/");
+                strBuild.append(allMaps.size());
+                positionInArray.setText(strBuild);
+            }
+
+            public final int getCurrentPage() {
+                return currentPage;
+            }
+        });
+
+
+        //
     }
+
+    /**
+     * Get the current vPager position from the ViewPager by
+     * extending SimpleOnPageChangeListener class and adding your method
+     */
+
 
     class MyAdapter extends PagerAdapter {
 
@@ -94,9 +126,11 @@ public class MapDetailViewPager extends Activity {
         }
 
         @Override
-        public View instantiateItem(ViewGroup container, int position) {
+        public View instantiateItem(ViewGroup container, int pos) {
+            //int newPos = position;
             TouchImageView img = new TouchImageView(container.getContext());
-            img.setImageDrawable((Drawable) imageHolder.get(position));
+            img.setImageDrawable((Drawable) imageHolder.get(pos));
+
             container.addView(img, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             return img;
         }

@@ -11,19 +11,19 @@
     -->
 
     <TextView
-        android:id="@+id/toggle_text"
+        android:id="@+id/order_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="5dip" />
 
     <Button
-        android:id="@+id/toggle_species"
+        android:id="@+id/toggle_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dip"
         android:text="@string/toggle_species" />
     <Button
-        android:id="@+id/toggleDismissButton"
+        android:id="@+id/orderDismissButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dip"

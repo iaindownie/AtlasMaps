@@ -6,7 +6,8 @@ package org.bto.atlasmaps;
  */
 
 public class Constants {
-    public static String bookSpeciesFile = "species.plist";
+    public static String bookSpeciesFile = "species_atlas.plist";
+    public static String allSpeciesFile = "species.plist";
     public static String mapSetFile = "mapset.plist";
     public static String bouOrderedAtlasSpeciesFile = "bou_atlas_ordered.plist";
     public static String bouOrderedAllSpeciesFile = "bou_all_ordered.plist";

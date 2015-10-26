@@ -112,8 +112,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
         View groupTab = convertView.findViewById(R.id.group_tab);
-        groupTab.setBackgroundColor(Color.parseColor("#" + Utilities.bouGroupingsColours().get(group)));
-
+        if (groupsParallel.size() > 0) {
+            groupTab.setBackgroundColor(Color.parseColor("#" + Utilities.bouGroupingsColours().get(group)));
+        }
 
         return convertView;
     }

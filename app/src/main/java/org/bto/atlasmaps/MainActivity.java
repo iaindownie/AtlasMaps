@@ -69,17 +69,25 @@ public class MainActivity extends Activity implements
 
     SharedPreferences prefs;
     boolean isBook;
+    boolean isBOU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Create the keyboard manager, so I can close it when not needed
         imm = (InputMethodManager) this
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
+        // Create context object to re-use later
         myContext = this.getApplicationContext();
+
+        // Set up the shared preferences for species list type and order (default true)
         prefs = getPreferences(Context.MODE_PRIVATE);
         isBook = prefs.getBoolean("LIST", true);
+        isBOU = prefs.getBoolean("ORDER", true);
 
+        // Search manager code for finding species easier
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         search = (SearchView) findViewById(R.id.search);
         search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -88,8 +96,11 @@ public class MainActivity extends Activity implements
         search.setOnCloseListener(this);
         imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
 
-        this.performDataPump(isBook);
+        // Initialise the expandableListView with the list and order settings
+        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        this.performDataPump(isBook, isBOU);
 
+        // When a user expands a species (group) to show maps available
         expandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {
 
             @Override
@@ -107,60 +118,64 @@ public class MainActivity extends Activity implements
 
         });
 
-
+        // When a user closes a species (group)
         expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                /*Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();*/
+                // Do nothing, just close the group
             }
         });
 
+        // When a user clicks on a map (child)
         expandableListView.setOnChildClickListener(new OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+
+                /**
+                 * When a user clicks on an aopened 'map', execute the threaded process to
+                 * push all the maps to the viewPager object
+                 */
                 new MyAsync().execute(groupPosition, childPosition);
-                /*
-                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(groupPosition));
-                ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
-                String mapName = (String) aBunchOfMaps.get(childPosition);
-                originalPosition = groupPosition;
-                Intent mapView = new Intent(getBaseContext(),MapDetailViewPager.class);
-                //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
-                Bundle b = new Bundle();
-                b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
-                b.putString("TITLE", expandableListTitle.get(groupPosition));
-                b.putInt("POSITION", childPosition);
-                b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
-                mapView.putExtras(b);
-                startActivity(mapView);
-                */
+
                 return false;
             }
         });
     }
 
-    private void performDataPump(boolean isBook) {
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+    /**
+     * The meat of the data population and if altered by settings, then update
+     *
+     * @param isBook to define the size of the species list
+     * @param isBOU  to define the order of the list
+     */
+    private void performDataPump(boolean isBook, boolean isBOU) {
+        // Set the files to use based on preferences
+        String mapSetFilename = Constants.mapSetFile;
+        String speciesNamesFilename = Constants.allSpeciesFile;
+        if (isBook) {
+            speciesNamesFilename = Constants.bookSpeciesFile;
+        }
+        // Populate the maps etc. from PLISTS based on files from preferences
         try {
-            String mapSetFilename = Constants.mapSetFile;
-            String speciesNamesFilename = Constants.bookSpeciesFile;
             mapEnglishNamesAndSpeciesCodes = plr.getSpeciesNamesAsTreeMap(myContext, speciesNamesFilename);
             mapSet = plr.getMapsAsHashMap(myContext, mapSetFilename);
             LinkedHashMap bouListingsAsLinkedHashMap = plr.getBouListAsHashMap(myContext, isBook);
-
             expandableListDetail = ExpandableListDataPump.getData(mapEnglishNamesAndSpeciesCodes,
-                    mapSet, bouListingsAsLinkedHashMap);
-
-            groupsParallel = ExpandableListDataPump.getGroupsParallel();
+                    mapSet, bouListingsAsLinkedHashMap, isBOU);
+            // groupsParallel is only for BOU order, so go empty for Alphabetic
+            if (isBOU) {
+                groupsParallel = ExpandableListDataPump.getGroupsParallel();
+            } else {
+                groupsParallel = new HashMap();
+            }
 
         } catch (IOException | XmlParseException e) {
             e.printStackTrace();
         }
 
+        // Finally, create the adapter and fill the expandableListView
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail, groupsParallel);
         expandableListView.setAdapter(expandableListAdapter);
@@ -173,6 +188,7 @@ public class MainActivity extends Activity implements
         //Log.i(TAG, "Activity Life Cycle : onStart : Activity Started");
     }
 
+    // The expandableListView is set as focus to make sure keyboard doesn't appear onResume
     @Override
     protected void onResume() {
         expandableListView.setFocusable(true);
@@ -200,6 +216,7 @@ public class MainActivity extends Activity implements
         //Log.i(TAG, "Activity Life Cycle : onDestroy : Activity Destroyed");
     }
 
+    // The adds the menu ... to the ActionBar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -207,6 +224,7 @@ public class MainActivity extends Activity implements
         return true;
     }
 
+    // This adds menu items to the ... menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -223,6 +241,10 @@ public class MainActivity extends Activity implements
             this.doToggleSwitch();
             return true;
         }
+        if (id == R.id.order_switch) {
+            this.doOrderSwitch();
+            return true;
+        }
         if (id == R.id.families) {
             Intent colourScheme = new Intent(getBaseContext(),
                     FamilyColours.class);
@@ -233,9 +255,10 @@ public class MainActivity extends Activity implements
         return super.onOptionsItemSelected(item);
     }
 
+    // A method to help witht he scrolling of the list, and stop it falling off the bottom of the screen
     public static void smoothScrollToPositionFromTop(final AbsListView view, final int position) {
         View child = getChildAtPosition(view, position);
-        // There's no need to scroll if child is already at top or view is already scrolled to its end
+        // There's no need to scroll if child is already at top or vPager is already scrolled to its end
         if ((child != null) && ((child.getTop() == 0) || ((child.getTop() > 0) && !view.canScrollVertically(1)))) {
             return;
         }
@@ -309,9 +332,10 @@ public class MainActivity extends Activity implements
         return false;
     }
 
+    /**
+     * Method to populate the About dialog window
+     */
     private void doAboutDialog() {
-
-        //dialog = new Dialog(this);
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.about);
         dialog.setTitle("Bird Atlas 2007-11 v" + BuildConfig.VERSION_NAME);
@@ -327,13 +351,15 @@ public class MainActivity extends Activity implements
         });
     }
 
+    /**
+     * Method to handle changing the size of the species list between Book or All
+     * It updates preferences and resets the expandableListView
+     */
     private void doToggleSwitch() {
-
-        //dialog = new Dialog(this);
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.toggle_species);
         dialog.setTitle("Toggle the species lists");
-        TextView text = (TextView) dialog.findViewById(R.id.text);
+        TextView text = (TextView) dialog.findViewById(R.id.toggle_text);
         StringBuilder spawny = new StringBuilder();
         if (isBook) {
             spawny.append("Currently viewing PUBLISHED species only\n\n");
@@ -348,21 +374,21 @@ public class MainActivity extends Activity implements
         text.setText(spawny.toString());
 
         Button toggle = (Button) dialog.findViewById(R.id.toggle_species);
-        Button dismiss = (Button) dialog.findViewById(R.id.dismissButton);
+        Button dismiss = (Button) dialog.findViewById(R.id.toggleDismissButton);
         dialog.show();
         toggle.setOnClickListener(new View.OnClickListener() {
             // @Override
             public void onClick(View v) {
                 if (isBook) {
                     isBook = false;
-                    performDataPump(isBook);
+                    performDataPump(isBook, isBOU);
                     ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
                     SharedPreferences.Editor editor = prefs.edit().putBoolean(
                             "LIST", isBook);
                     editor.apply();
                 } else {
                     isBook = true;
-                    performDataPump(isBook);
+                    performDataPump(isBook, isBOU);
                     ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
                     SharedPreferences.Editor editor = prefs.edit().putBoolean(
                             "LIST", isBook);
@@ -379,8 +405,68 @@ public class MainActivity extends Activity implements
         });
     }
 
+    /**
+     * Method to handle changing the order of the species list between BOU or Alphabetic
+     * It updates preferences and resets the expandableListView
+     */
+    private void doOrderSwitch() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.toggle_order);
+        dialog.setTitle("Toggle the species order");
+        TextView text = (TextView) dialog.findViewById(R.id.order_text);
+        StringBuilder spawny = new StringBuilder();
+        if (isBook) {
+            spawny.append("Currently viewing BOU species order\n\n");
+        } else {
+            spawny.append("Currently viewing ALPHABETIC order\n\n");
+        }
+        spawny.append("Some text ");
+        spawny.append("Some text ");
+        spawny.append("You can change the species list order ");
+        spawny.append("using the 'switch order' button below.\n\n");
+        spawny.append("Your choice will be remembered until you next change it.\n");
+        text.setText(spawny.toString());
+
+        Button toggle = (Button) dialog.findViewById(R.id.toggle_order);
+        Button dismiss = (Button) dialog.findViewById(R.id.orderDismissButton);
+        dialog.show();
+        toggle.setOnClickListener(new View.OnClickListener() {
+            // @Override
+            public void onClick(View v) {
+                if (isBOU) {
+                    isBOU = false;
+                    performDataPump(isBook, isBOU);
+                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
+                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
+                            "ORDER", isBOU);
+                    editor.apply();
+                } else {
+                    isBOU = true;
+                    performDataPump(isBook, isBOU);
+                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
+                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
+                            "ORDER", isBOU);
+                    editor.apply();
+                }
+                dialog.dismiss();
+            }
+        });
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            // @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    /**
+     * Inner class to keep the possible large process of populating the ViewPager with a large number
+     * of large maps (up to 13 maps). Does all processing in the 'background' with a dialog and
+     * spinner in the foreground.
+     */
     private class MyAsync extends AsyncTask<Integer, Void, Void> {
 
+        // Creates and shows the dialog...
         @Override
         protected void onPreExecute() {
 
@@ -393,30 +479,30 @@ public class MainActivity extends Activity implements
             myProgress.show();
         }
 
+        // Does the work...
         @Override
         protected Void doInBackground(Integer... params) {
-            //try {
-                //Thread.sleep(3000);
-                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(params[0]));
-                ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
-                String mapName = (String) aBunchOfMaps.get(params[1]);
-                originalPosition = params[0];
-                Intent mapView = new Intent(getBaseContext(),MapDetailViewPager.class);
-                //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
-                Bundle b = new Bundle();
-                b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
-                b.putString("TITLE", expandableListTitle.get(params[0]));
-                b.putInt("POSITION", params[1]);
-                b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
-                mapView.putExtras(b);
-                startActivity(mapView);
-            //} catch (InterruptedException e) {
-
-            //    e.printStackTrace();
-            //}
+            String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(params[0]));
+            ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
+            originalPosition = params[0];
+            Intent mapView = new Intent(getBaseContext(), MapDetailViewPager.class);
+            /**
+             * Following three lines were for the prototype of simple ImageView rather
+             * than later ViewPager with swipe, which is a lot nicer (but needed the AsyncTask
+             */
+            //String mapName = (String) aBunchOfMaps.get(params[1]);
+            //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
+            //b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+            Bundle b = new Bundle();
+            b.putString("TITLE", expandableListTitle.get(params[0]));
+            b.putInt("POSITION", params[1]);
+            b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
+            mapView.putExtras(b);
+            startActivity(mapView);
             return null;
         }
 
+        // Once complete, close dialog and move to next task...
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);

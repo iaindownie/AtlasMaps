@@ -7,6 +7,8 @@
     <string name="instructions">Help</string>
     <string name="dismiss">Dismiss</string>
     <string name="list_switch">Toggle no. species</string>
+    <string name="order_switch">Change species order</string>
     <string name="toggle_species">Switch lists</string>
+    <string name="toggle_order">Switch order</string>
     <string name="families">Species group colours</string>
 </resources>

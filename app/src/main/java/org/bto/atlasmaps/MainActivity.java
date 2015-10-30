@@ -1,5 +1,6 @@
 package org.bto.atlasmaps;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;

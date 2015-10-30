@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true" />
 
-    <TextView
-        android:id="@+id/locEx"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/viewpager"
@@ -22,10 +22,28 @@
         android:layout_weight="1.0"
         android:gravity="right"
         android:paddingRight="5dip"
-        android:paddingTop="5dp"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/locEx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            />
+
+        <ImageButton
+            android:id="@+id/birdTrackButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:contentDescription="Some content"
+            android:src="@drawable/bt_icon"
+            android:background="@null"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"/>
+
+    </LinearLayout>
 
     <!--<android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

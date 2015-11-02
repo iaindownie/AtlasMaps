@@ -74,7 +74,10 @@ public class Utilities {
         ArrayList<String> newList = new ArrayList<String>();
         for (int i = 0; i < aList.size(); i++) {
             String mapName = (String) aList.get(i);
-            newList.add(mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+            String temp = mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1);
+            if(temp.contains("2011_")) {
+                newList.add(temp);
+            }
         }
         return newList;
     }

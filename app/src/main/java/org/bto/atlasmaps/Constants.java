@@ -1,7 +1,7 @@
 package org.bto.atlasmaps;
 
 /**
- * Constants class to hold filenames and suchlike...
+ * Constants class to hold filenames and suchlike...simples...
  * Created by Iain Downie on 19/10/2015.
  */
 

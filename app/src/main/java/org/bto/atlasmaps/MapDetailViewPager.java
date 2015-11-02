@@ -112,7 +112,7 @@ public class MapDetailViewPager extends Activity {
         ImageButton birdTrackButton = (ImageButton) findViewById(R.id.birdTrackButton);
         boolean installed = appInstalledOrNot(birdTrackPackageString);
         if (installed) {
-            // Add a click listener to the button
+            // Add a standard click listener to the button
             birdTrackButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "BirdTrack button clicked", Toast.LENGTH_SHORT).show();

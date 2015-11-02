@@ -42,8 +42,13 @@ public class ExpandableListDataPump {
                 List anArray = (ArrayList) mapSet.get(bouSpeciesCode);
                 List refinedArray = new ArrayList();
                 for (int j = 0; j < anArray.size(); j++) {
-                    refinedArray.add(Utilities.getSensibleMapName((String) anArray.get(j)));
+                    String aChildItem = (String) anArray.get(j);
+                    // If clause to remove old maps (prototype)
+                    if(aChildItem.contains("2011_")) {
+                        refinedArray.add(Utilities.getSensibleMapName(aChildItem));
+                    }
                 }
+                // Final output for if BOU ordered list
                 expandableListDetail.put(bouSpeciesName, refinedArray);
             }
             return expandableListDetail;
@@ -63,8 +68,13 @@ public class ExpandableListDataPump {
                 List anArray = (ArrayList) mapSet.get(paddedSpeciesCode);
                 List refinedArray = new ArrayList();
                 for (int j = 0; j < anArray.size(); j++) {
-                    refinedArray.add(Utilities.getSensibleMapName((String) anArray.get(j)));
+                    String aChildItem = (String) anArray.get(j);
+                    // If clause to remove old maps (prototype)
+                    if(aChildItem.contains("2011_")) {
+                        refinedArray.add(Utilities.getSensibleMapName(aChildItem));
+                    }
                 }
+                // Final output for if Alphabetic species list
                 expandableListDetail.put(speciesName, refinedArray);
             }
 

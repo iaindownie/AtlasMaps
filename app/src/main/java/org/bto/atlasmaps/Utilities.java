@@ -75,6 +75,7 @@ public class Utilities {
         for (int i = 0; i < aList.size(); i++) {
             String mapName = (String) aList.get(i);
             String temp = mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1);
+            // Code to handle the reduced mapset (no old maps)
             if(temp.contains("2011_")) {
                 newList.add(temp);
             }

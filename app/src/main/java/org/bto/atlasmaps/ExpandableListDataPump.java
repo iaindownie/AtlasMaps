@@ -14,7 +14,7 @@ import xmlwise.XmlParseException;
  */
 public class ExpandableListDataPump {
 
-    public static HashMap groupsParallel = new HashMap();
+    //public static HashMap groupsParallel = new HashMap();
 
     public static LinkedHashMap<String, List<String>> getData(TreeMap mapEnglishNamesAndSpeciesCodes,
                                                               HashMap mapSet,
@@ -32,7 +32,7 @@ public class ExpandableListDataPump {
                 ArrayList aList = (ArrayList) lhMap.get(aGroup);
                 for (int j = 0; j < aList.size(); j++) {
                     bouSpecies.add((String) aList.get(j));
-                    groupsParallel.put((String) aList.get(j), aGroup);
+                    //groupsParallel.put((String) aList.get(j), aGroup);
                 }
             }
 
@@ -84,7 +84,7 @@ public class ExpandableListDataPump {
 
     }
 
-    public static HashMap getGroupsParallel() {
+    /*public static HashMap getGroupsParallel() {
         return groupsParallel;
-    }
+    }*/
 }

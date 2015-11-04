@@ -8,9 +8,40 @@
     android:paddingBottom="10dp"
     tools:context="com.javapapers.android.expandablelistview.app.MainActivity">
 
-    <SearchView android:id="@+id/search" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" android:iconifiedByDefault="false" />
+    <LinearLayout android:id="@+id/search_and_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0">
+
+        <SearchView android:id="@+id/search" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" android:iconifiedByDefault="false"
+            android:layout_weight="1.0"/>
+
+        <ImageButton
+            android:id="@+id/go_top"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:contentDescription="Go to top"
+            android:src="@drawable/arrow_up"
+            android:background="@null"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:paddingRight="1dip"/>
+
+        <ImageButton
+            android:id="@+id/go_bottom"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:contentDescription="Go to bottom"
+            android:src="@drawable/arrow_down"
+            android:background="@null"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:paddingLeft="1dip"/>
+
+    </LinearLayout>
+
 
     <ExpandableListView
         android:id="@+id/expandableListView"
@@ -20,6 +51,6 @@
         android:divider="#A59367"
         android:dividerHeight="0.5dp"
         android:transcriptMode="disabled"
-        android:layout_below="@+id/search"/>
+        android:layout_below="@+id/search_and_nav"/>
 
 </RelativeLayout>

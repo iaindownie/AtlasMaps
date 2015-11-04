@@ -1,6 +1,5 @@
 package org.bto.atlasmaps;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,10 +22,10 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import org.bto.atlasmaps.fluff.FamilyColours;
 import org.spawny.atlasmaps.BuildConfig;
 import org.spawny.atlasmaps.R;
 
@@ -65,7 +64,7 @@ public class MainActivity extends Activity implements
 
     private static final String TAG = "MainActivity";
 
-    private HashMap groupsParallel;
+    //private HashMap groupsParallel;
     private Context myContext;
 
     SharedPreferences prefs;
@@ -107,7 +106,7 @@ public class MainActivity extends Activity implements
             @Override
             public void onGroupExpand(int groupPosition) {
                 int offsetGroupPosition = groupPosition;
-                if (offsetGroupPosition > 0) offsetGroupPosition -= 1;
+                if (offsetGroupPosition >= 0) offsetGroupPosition -= 1;
                 smoothScrollToPositionFromTop(expandableListView, offsetGroupPosition);
                 if (lastExpandedPosition != -1
                         && groupPosition != lastExpandedPosition) {
@@ -143,6 +142,20 @@ public class MainActivity extends Activity implements
                 return false;
             }
         });
+
+        ImageButton uparrow = (ImageButton) findViewById(R.id.go_top);
+        uparrow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                expandableListView.setSelection(0);
+            }
+        });
+        ImageButton downarrow = (ImageButton) findViewById(R.id.go_bottom);
+        downarrow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                expandableListView.setSelection(expandableListView.getCount() - 1);
+            }
+        });
+
     }
 
     /**
@@ -166,11 +179,11 @@ public class MainActivity extends Activity implements
             expandableListDetail = ExpandableListDataPump.getData(mapEnglishNamesAndSpeciesCodes,
                     mapSet, bouListingsAsLinkedHashMap, isBOU);
             // groupsParallel is only for BOU order, so go empty for Alphabetic
-            if (isBOU) {
+            /*if (isBOU) {
                 groupsParallel = ExpandableListDataPump.getGroupsParallel();
             } else {
                 groupsParallel = new HashMap();
-            }
+            }*/
 
         } catch (IOException | XmlParseException e) {
             e.printStackTrace();
@@ -178,7 +191,7 @@ public class MainActivity extends Activity implements
 
         // Finally, create the adapter and fill the expandableListView
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
-        expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail, groupsParallel);
+        expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
     }
 
@@ -246,22 +259,29 @@ public class MainActivity extends Activity implements
             this.doOrderSwitch();
             return true;
         }
-        if (id == R.id.families) {
+        /*if (id == R.id.families) {
             Intent colourScheme = new Intent(getBaseContext(),
                     FamilyColours.class);
             startActivity(colourScheme);
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
 
-    // A method to help witht he scrolling of the list, and stop it falling off the bottom of the screen
+    // A method to help with the scrolling of the list, and stop it falling off the bottom of the screen
     public static void smoothScrollToPositionFromTop(final AbsListView view, final int position) {
         View child = getChildAtPosition(view, position);
+
         // There's no need to scroll if child is already at top or vPager is already scrolled to its end
         if ((child != null) && ((child.getTop() == 0) || ((child.getTop() > 0) && !view.canScrollVertically(1)))) {
-            return;
+            // Fix for scrolling bug in second element of the listview expanding (recursive!)
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    view.smoothScrollToPositionFromTop(position, 0);
+                }
+            });
         }
 
         view.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -474,9 +494,9 @@ public class MainActivity extends Activity implements
             super.onPreExecute();
             myProgress = new ProgressDialog(MainActivity.this);
             myProgress.setTitle("Please Wait..");
-            myProgress.setMessage("Loading all maps for this species...");
             myProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             myProgress.setCancelable(false);
+            myProgress.setMessage("Loading all maps for this species...");
             myProgress.show();
         }
 

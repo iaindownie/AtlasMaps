@@ -28,17 +28,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private LinkedHashMap<String, List<String>> expandableListDetail;
 
     private ArrayList<String> originalList;
-    private HashMap<String, String> groupsParallel;
+    //private HashMap<String, String> groupsParallel;
 
+    /*public ExpandableListAdapter(Context context, List<String> expandableListTitle,
+                                 LinkedHashMap<String, List<String>> expandableListDetail, HashMap groupsParallel) {*/
     public ExpandableListAdapter(Context context, List<String> expandableListTitle,
-                                 LinkedHashMap<String, List<String>> expandableListDetail, HashMap groupsParallel) {
+                                 LinkedHashMap<String, List<String>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
 
         this.originalList = new ArrayList<>();
         this.originalList.addAll(expandableListTitle);
-        this.groupsParallel = groupsParallel;
+        //this.groupsParallel = groupsParallel;
 
     }
 
@@ -101,7 +103,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
-        String group = (String) this.groupsParallel.get(listTitle);
+        //String group = (String) this.groupsParallel.get(listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -115,10 +117,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.circleTitle);
         circleTextView.setTypeface(null, Typeface.BOLD);
         circleTextView.setText(group.substring(0,1));*/
-        View groupTab = convertView.findViewById(R.id.group_tab);
+        /*View groupTab = convertView.findViewById(R.id.group_tab);
         if (groupsParallel.size() > 0) {
             groupTab.setBackgroundColor(Color.parseColor("#" + Utilities.bouGroupingsColours().get(group)));
-        }
+        }*/
 
         return convertView;
     }

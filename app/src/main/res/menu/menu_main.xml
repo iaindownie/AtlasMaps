@@ -16,9 +16,9 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/order_switch" />
-    <item
+    <!--<item
         android:id="@+id/families"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/families" />
+        android:title="@string/families" />-->
 </menu>

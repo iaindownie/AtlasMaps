@@ -44,7 +44,7 @@ public class MapDetailViewPager extends Activity {
 
     ViewPager vPager = null;
 
-    int img[] = {R.drawable.right_arrow, R.drawable.splash_640_960};
+    //int img[] = {R.drawable.right_arrow, R.drawable.splash_640_960};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class MapDetailViewPager extends Activity {
 
         // Code requested as option/idea by Simon Gillings - direct link to BirdTrack
         // Extra code is to detect if BT installed on phone or not
-        ImageButton birdTrackButton = (ImageButton) findViewById(R.id.birdTrackButton);
+        /*ImageButton birdTrackButton = (ImageButton) findViewById(R.id.birdTrackButton);
         boolean installed = appInstalledOrNot(birdTrackPackageString);
         if (installed) {
             // Add a standard click listener to the button
@@ -124,7 +124,7 @@ public class MapDetailViewPager extends Activity {
         } else {
             // Hide BirdTrack icon on maps
             birdTrackButton.setVisibility(View.GONE);
-        }
+        }*/
 
     }
 

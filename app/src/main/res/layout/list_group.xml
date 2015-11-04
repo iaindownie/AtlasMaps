@@ -18,6 +18,15 @@
         android:gravity="left"
         android:layout_weight="1.0"/>
 
+    <!--<TextView
+        android:id="@+id/circleTitle"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/circle_shape"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        />-->
+
     <View
         android:id="@+id/group_tab"
         android:layout_width="30dp"

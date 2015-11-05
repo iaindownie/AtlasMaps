@@ -1,18 +1,22 @@
 package org.bto.atlasmaps;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -86,6 +90,7 @@ public class MainActivity extends Activity implements
         prefs = getPreferences(Context.MODE_PRIVATE);
         isBook = prefs.getBoolean("LIST", true);
         isBOU = prefs.getBoolean("ORDER", true);
+
 
         // Search manager code for finding species easier
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -378,16 +383,17 @@ public class MainActivity extends Activity implements
      */
     private void doToggleSwitch() {
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
         dialog.setContentView(R.layout.toggle_species);
-        dialog.setTitle("Toggle the species lists");
+        //dialog.setTitle("Toggle the species lists");
         TextView text = (TextView) dialog.findViewById(R.id.toggle_text);
         StringBuilder spawny = new StringBuilder();
         if (isBook) {
-            spawny.append("Currently viewing PUBLISHED species only\n\n");
+            spawny.append("Currently viewing PUBLISHED species only.\n\n");
         } else {
-            spawny.append("Currently viewing ALL species\n\n");
+            spawny.append("Currently viewing ALL available species.\n\n");
         }
-        spawny.append("The Bird Atlas 2007-11 book included 300? species accounts, ");
+        spawny.append("The Bird Atlas 2007-11 book included ~300 species accounts, ");
         spawny.append("but maps exist for over 500 species. You can toggle between ");
         spawny.append("the smaller (easier to navigate) list and the full list by ");
         spawny.append("using the 'switch lists' button below.\n\n");
@@ -426,14 +432,16 @@ public class MainActivity extends Activity implements
         });
     }
 
+
     /**
      * Method to handle changing the order of the species list between BOU or Alphabetic
      * It updates preferences and resets the expandableListView
      */
     private void doOrderSwitch() {
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //before
         dialog.setContentView(R.layout.toggle_order);
-        dialog.setTitle("Toggle the species order");
+        //dialog.setTitle("Toggle the species order");
         TextView text = (TextView) dialog.findViewById(R.id.order_text);
         StringBuilder spawny = new StringBuilder();
         if (isBook) {
@@ -441,8 +449,11 @@ public class MainActivity extends Activity implements
         } else {
             spawny.append("Currently viewing ALPHABETIC order\n\n");
         }
-        spawny.append("Some text ");
-        spawny.append("Some text ");
+        spawny.append("You can either view the species in Alphabetic order ");
+        spawny.append("or you can use the BOU (The British Ornithologists' Union) order, ");
+        spawny.append("which is based on taxonomic groupings. The BOU maintains ");
+        spawny.append("the British List, the official list of wild birds records ");
+        spawny.append("in Great Britain (England, Scotland and Wales and associated waters).\n\n");
         spawny.append("You can change the species list order ");
         spawny.append("using the 'switch order' button below.\n\n");
         spawny.append("Your choice will be remembered until you next change it.\n");

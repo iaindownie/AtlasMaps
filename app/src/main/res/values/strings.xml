@@ -6,9 +6,11 @@
     <string name="about">About</string>
     <string name="instructions">Help</string>
     <string name="dismiss">Dismiss</string>
-    <string name="list_switch">Toggle no. species</string>
-    <string name="order_switch">Change species order</string>
-    <string name="toggle_species">Switch lists</string>
-    <string name="toggle_order">Switch order</string>
+    <string name="toggle_species">Change number of species</string>
+    <string name="toggle_order">Change species order</string>
+    <string name="list_switch">Switch lists</string>
+    <string name="order_switch">Switch order</string>
+    <string name="switch_listMenu">Switch species lists</string>
+    <string name="switch_ordermenu">Switch species order</string>
     <string name="families">Species group colours</string>
 </resources>

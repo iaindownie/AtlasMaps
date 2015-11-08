@@ -44,7 +44,8 @@ public class ExpandableListDataPump {
                 for (int j = 0; j < anArray.size(); j++) {
                     String aChildItem = (String) anArray.get(j);
                     // If clause to remove old maps (prototype)
-                    if(aChildItem.contains("2011_")) {
+                    if(aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
+                            || aChildItem.contains("WC19802011_") || aChildItem.contains("WD20072011_")) {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }
                 }
@@ -70,7 +71,8 @@ public class ExpandableListDataPump {
                 for (int j = 0; j < anArray.size(); j++) {
                     String aChildItem = (String) anArray.get(j);
                     // If clause to remove old maps (prototype)
-                    if(aChildItem.contains("2011_")) {
+                    if(aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
+                            || aChildItem.contains("WC19802011_") || aChildItem.contains("WD20072011_")) {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }
                 }

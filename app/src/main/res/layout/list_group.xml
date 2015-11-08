@@ -16,7 +16,8 @@
         android:paddingTop="10dp"
         android:textColor="#000000"
         android:gravity="left"
-        android:layout_weight="1.0"/>
+        android:layout_weight="1.0"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <!--<TextView
         android:id="@+id/circleTitle"

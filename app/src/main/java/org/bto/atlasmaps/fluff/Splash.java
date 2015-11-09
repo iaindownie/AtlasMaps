@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 
 import org.bto.atlasmaps.MainActivity;
 import org.spawny.atlasmaps.R;
@@ -26,8 +27,9 @@ public class Splash extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.splash);
-
+        
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable() {

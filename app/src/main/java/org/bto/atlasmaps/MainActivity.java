@@ -2,18 +2,17 @@ package org.bto.atlasmaps;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +30,7 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import org.bto.atlasmaps.fluff.AboutBirdAtlasMaps;
 import org.spawny.atlasmaps.BuildConfig;
 import org.spawny.atlasmaps.R;
 
@@ -79,7 +79,11 @@ public class MainActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //requestWindowFeature(Window.FEATURE_LEFT_ICON);
+
         setContentView(R.layout.activity_main);
+
+        //getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.action_bar_icon);
 
         // Create the keyboard manager, so I can close it when not needed
         imm = (InputMethodManager) this
@@ -89,8 +93,10 @@ public class MainActivity extends Activity implements
 
         ActionBar actionBar = this.getActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.bar_icon);
-        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setIcon(R.drawable.action_bar_icon);
+        actionBar.setDisplayUseLogoEnabled(true);/**/
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#CC3300")));
+
 
 
         // Set up the shared preferences for species list type and order (default true)
@@ -149,7 +155,26 @@ public class MainActivity extends Activity implements
                  * When a user clicks on an aopened 'map', execute the threaded process to
                  * push all the maps to the viewPager object
                  */
-                new MyAsync().execute(groupPosition, childPosition);
+                //new MyAsync().execute(groupPosition, childPosition);
+
+                String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(groupPosition));
+                ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
+                originalPosition = groupPosition;
+                Intent mapView = new Intent(getBaseContext(), MapDetailViewPager.class);
+                /**
+                 * Following three lines were for the prototype of simple ImageView rather
+                 * than later ViewPager with swipe, which is a lot nicer (but needed the AsyncTask
+                 */
+                //String mapName = (String) aBunchOfMaps.get(params[1]);
+                //Intent mapView = new Intent(getBaseContext(),MapDetail.class);
+                //b.putString("MAP", mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1));
+                Bundle b = new Bundle();
+                b.putString("TITLE", expandableListTitle.get(groupPosition));
+                b.putInt("POSITION", childPosition);
+                b.putSerializable("ALLMAPS", Utilities.getImageStringsOnly(aBunchOfMaps));
+                mapView.putExtras(b);
+                startActivity(mapView);
+
 
                 return false;
             }
@@ -260,7 +285,9 @@ public class MainActivity extends Activity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.about) {
-            this.doAboutDialog();
+            //this.doAboutDialog();
+            Intent mapView = new Intent(getBaseContext(), AboutBirdAtlasMaps.class);
+            startActivity(mapView);
             return true;
         }
         if (id == R.id.list_switch) {
@@ -511,10 +538,12 @@ public class MainActivity extends Activity implements
 
             super.onPreExecute();
             myProgress = new ProgressDialog(MainActivity.this);
-            myProgress.setTitle("Please Wait..");
+            myProgress.setIndeterminateDrawable(getResources().getDrawable(R.drawable.icon_40_rounded));
+            myProgress.setTitle("Loading maps");
             myProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             myProgress.setCancelable(false);
-            myProgress.setMessage("Loading all maps for this species...");
+            myProgress.setIndeterminate(true);
+            myProgress.setMessage("Please wait...");
             myProgress.show();
         }
 

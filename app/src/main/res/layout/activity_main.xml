@@ -44,7 +44,6 @@
 
     </LinearLayout>
 
-
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_height="wrap_content"

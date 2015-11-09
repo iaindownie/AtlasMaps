@@ -1,5 +1,6 @@
 package org.bto.atlasmaps;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -85,6 +86,12 @@ public class MainActivity extends Activity implements
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         // Create context object to re-use later
         myContext = this.getApplicationContext();
+
+        ActionBar actionBar = this.getActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.bar_icon);
+        actionBar.setDisplayUseLogoEnabled(true);
+
 
         // Set up the shared preferences for species list type and order (default true)
         prefs = getPreferences(Context.MODE_PRIVATE);

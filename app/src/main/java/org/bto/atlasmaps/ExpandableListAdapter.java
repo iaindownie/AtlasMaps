@@ -70,7 +70,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         expandedListTextView.setText(expandedListText);
         //System.out.println(expandedListText);
         LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aListItem);
-        if (expandedListText.startsWith("Breeding")) {
+        if (expandedListText.startsWith("Breeding") || expandedListText.startsWith("Crossbill")) {
             linearLayout.setBackgroundColor(Color.parseColor("#FFCC99"));
         } else {
             linearLayout.setBackgroundColor(Color.parseColor("#99CCFF"));

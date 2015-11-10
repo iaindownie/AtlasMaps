@@ -45,7 +45,8 @@ public class Utilities {
      * @return String, usually better english
      */
     public static String getSensibleMapName(String aStr) {
-        if (aStr.contains("BD20072011_")) return "Breeding Distribution 2008-11";
+        if (aStr.contains("_rs")) return "Crossbill Survey 2008";
+        else if (aStr.contains("BD20072011_")) return "Breeding Distribution 2008-11";
         else if (aStr.contains("WD20072011_")) return "Winter Distribution 2007-11";
         else if (aStr.contains("BA20072011_")) return "Breeding Abundance 2008-11";
         else if (aStr.contains("WA20072011_")) return "Winter Abundance 2008-11";

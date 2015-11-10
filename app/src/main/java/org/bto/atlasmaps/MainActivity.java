@@ -285,7 +285,6 @@ public class MainActivity extends Activity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.about) {
-            //this.doAboutDialog();
             Intent mapView = new Intent(getBaseContext(), AboutBirdAtlasMaps.class);
             startActivity(mapView);
             return true;
@@ -390,25 +389,6 @@ public class MainActivity extends Activity implements
             expandableListView.collapseGroup(i);
         search.clearFocus();
         return false;
-    }
-
-    /**
-     * Method to populate the About dialog window
-     */
-    private void doAboutDialog() {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.about);
-        dialog.setTitle("Bird Atlas 2007-11 v" + BuildConfig.VERSION_NAME);
-        TextView text = (TextView) dialog.findViewById(R.id.text);
-        text.setText("Blurb about Bird Atlas 2007-11 app.\n");
-        Button but = (Button) dialog.findViewById(R.id.dismissButton);
-        dialog.show();
-        but.setOnClickListener(new View.OnClickListener() {
-            // @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
     }
 
     /**

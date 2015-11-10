@@ -11,6 +11,8 @@ import xmlwise.XmlParseException;
 
 /**
  * Created by Iain Downie on 30/09/2015.
+ * Commented out code (groupsParallel) keeps the possibility of family colour scheme alive
+ * which has been excluded after discussion with Simon et al.
  */
 public class ExpandableListDataPump {
 
@@ -25,7 +27,6 @@ public class ExpandableListDataPump {
 
         if (isBOU) {
             ArrayList groupings = new ArrayList(lhMap.keySet());
-            //System.out.println("Grouping:" + groupings.toString());
             ArrayList bouSpecies = new ArrayList();
             for (int i = 0; i < groupings.size(); i++) {
                 String aGroup = (String) groupings.get(i);
@@ -44,7 +45,7 @@ public class ExpandableListDataPump {
                 for (int j = 0; j < anArray.size(); j++) {
                     String aChildItem = (String) anArray.get(j);
                     // If clause to remove old maps (prototype)
-                    if(aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
+                    if (aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
                             || aChildItem.contains("WC19802011_") || aChildItem.contains("WD20072011_")) {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }
@@ -71,7 +72,7 @@ public class ExpandableListDataPump {
                 for (int j = 0; j < anArray.size(); j++) {
                     String aChildItem = (String) anArray.get(j);
                     // If clause to remove old maps (prototype)
-                    if(aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
+                    if (aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
                             || aChildItem.contains("WC19802011_") || aChildItem.contains("WD20072011_")) {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }

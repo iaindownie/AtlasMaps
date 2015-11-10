@@ -30,21 +30,17 @@ import java.util.ArrayList;
  */
 public class MapDetailViewPager extends Activity {
 
-    private static final String TAG = "MapDetail";
-
-    private ImageView mImageView;
     private TextView positionInArray;
     private InputStream ims;
-    //private PhotoViewAttacher mAttacher;
     private int position = 0;
     private ArrayList allMaps;
     private ArrayList imageHolder;
-    private String birdTrackPackageString = "bto.org.monitoring.birdtrack";
-
-
-    ViewPager vPager = null;
-
-    //int img[] = {R.drawable.right_arrow, R.drawable.splash_640_960};
+    private ViewPager vPager = null;
+    /*
+     * Code to allow the detection of BirdTrack on the device. If installed, then
+     * present a button on the map. Excluded for now.
+     */
+    //private String birdTrackPackageString = "bto.org.monitoring.birdtrack";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +48,6 @@ public class MapDetailViewPager extends Activity {
         setContentView(R.layout.map_view_pager);
 
         positionInArray = (TextView) findViewById(R.id.locEx);
-        //String aMap;
 
         Intent intent = this.getIntent();
         Bundle b = intent.getExtras();

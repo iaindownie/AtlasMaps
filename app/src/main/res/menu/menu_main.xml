@@ -2,11 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/about"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/about" />
-    <item
         android:id="@+id/list_switch"
         android:orderInCategory="100"
         android:showAsAction="never"
@@ -16,6 +11,11 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/switch_ordermenu" />
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/about" />
     <!--<item
         android:id="@+id/families"
         android:orderInCategory="100"

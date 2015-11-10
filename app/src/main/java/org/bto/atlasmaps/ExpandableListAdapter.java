@@ -14,12 +14,13 @@ import android.widget.TextView;
 import org.spawny.atlasmaps.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
  * Created by Iain Downie on 30/09/2015.
+ * Commented out code (groupsParallel) keeps the possibility of family colour scheme alive
+ * which has been excluded after discussion with Simon et al.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -103,7 +104,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String listTitle = (String) getGroup(listPosition);
-        //String group = (String) this.groupsParallel.get(listTitle);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -113,7 +113,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
-        /*TextView circleTextView = (TextView) convertView
+        /*String group = (String) this.groupsParallel.get(listTitle);
+        TextView circleTextView = (TextView) convertView
                 .findViewById(R.id.circleTitle);
         circleTextView.setTypeface(null, Typeface.BOLD);
         circleTextView.setText(group.substring(0,1));*/
@@ -167,7 +168,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             }
         }
 
-        //Log.v("ExpandableListAdapter", String.valueOf(expandableListTitle.size()));
         notifyDataSetChanged();
 
     }

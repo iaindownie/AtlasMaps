@@ -13,7 +13,7 @@ import org.spawny.atlasmaps.R;
 /**
  * Created by iaindownie on 19/10/2015.
  * Copyright @iaindownie
- * TODO: Add a class header comment!
+ * Excluded after discussion with Simon et al.
  */
 public class CustomFamilyAdapter extends BaseAdapter {
     String[] a, b;

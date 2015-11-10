@@ -27,7 +27,7 @@ import android.widget.OverScroller;
 import android.widget.Scroller;
 
 /**
- * Created by iaindownie on 22/10/2015.
+ * Created in project iaindownie on 22/10/2015.
  * Copyright (c) 2012 Michael Ortiz
  * -
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -140,7 +140,8 @@ public class TouchImageView extends ImageView {
             mScaleType = ScaleType.FIT_CENTER;
         }
         minScale = 1;
-        maxScale = 3;
+        //maxScale = 3;
+        maxScale = 4;
         superMinScale = SUPER_MIN_MULTIPLIER * minScale;
         superMaxScale = SUPER_MAX_MULTIPLIER * maxScale;
         setImageMatrix(matrix);

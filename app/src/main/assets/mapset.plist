@@ -18125,62 +18125,18 @@
       <array>
         <dict>
           <key>Breeding (2008-11)</key>
-          <string>small_00479CYBD20072011_010_0.png</string>
-        </dict>
-        <dict>
-          <key>Breeding (2008-11)</key>
           <string>small_00479CYBD20072011_010_rs.png</string>
         </dict>
-        <dict>
-          <key>Winter (2007-11)</key>
-          <string>small_00479CYWD20072011_010_0.png</string>
-        </dict>
       </array>
       <array>
-        <dict>
-          <key>Breeding (2008-11)</key>
-          <string>small_00479CYBA20072011_020_0.png</string>
-        </dict>
-        <dict>
-          <key>Winter (2007-11)</key>
-          <string>small_00479CYWA20072011_020_0.png</string>
-        </dict>
       </array>
       <array>
-        <dict>
-          <key>Breeding (1988-91)</key>
-          <string>small_00479CYBD19881991_010_0.png</string>
-        </dict>
-        <dict>
-          <key>Winter (1981-84)</key>
-          <string>small_00479CYWD19811984_010_0.png</string>
-        </dict>
       </array>
       <array>
-        <dict>
-          <key>Breeding (1968-72 to 2008-11)</key>
-          <string>small_00479CYBC19702011_010_0.png</string>
-        </dict>
-        <dict>
-          <key>Breeding (1988-91 to 2008-11)</key>
-          <string>small_00479CYBC19902011_010_0.png</string>
-        </dict>
-        <dict>
-          <key>Winter (1981-84 to 2007-11)</key>
-          <string>small_00479CYWC19802011_010_0.png</string>
-        </dict>
       </array>
       <array>
-        <dict>
-          <key>Breeding (1968-72 to 2008-11)</key>
-          <string>small_00479CYBH19702011_010_0.png</string>
-        </dict>
       </array>
       <array>
-        <dict>
-          <key>Breeding (1988-91 to 2008-11)</key>
-          <string>small_00479CYBT19902011_020_0.png</string>
-        </dict>
       </array>
       <array/>
     </array>

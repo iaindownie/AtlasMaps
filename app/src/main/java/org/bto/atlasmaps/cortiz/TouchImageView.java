@@ -26,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
+import org.spawny.atlasmaps.R;
+
 /**
  * Created in project iaindownie on 22/10/2015.
  * Copyright (c) 2012 Michael Ortiz

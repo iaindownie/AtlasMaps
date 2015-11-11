@@ -121,6 +121,15 @@ public class MapDetailViewPager extends Activity {
             birdTrackButton.setVisibility(View.GONE);
         }*/
 
+        ImageView flipper = (ImageView) findViewById(R.id.orientation_icon);
+        final String flipMsg = "You can view the zoomable maps in either orientation on your device";
+        flipper.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), flipMsg, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 
     /**

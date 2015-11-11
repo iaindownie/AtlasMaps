@@ -2,6 +2,7 @@ package org.bto.atlasmaps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * Utility class to provide global functionality to entire App
@@ -82,7 +83,25 @@ public class Utilities {
                 newList.add(temp);
             }
         }
-        return newList;
+        TreeMap tm = new TreeMap();
+        for (int i = 0; i < newList.size(); i++) {
+            String aValue = (String)newList.get(i);
+            if(aValue.contains("BD20072011_")){
+                tm.put(new Integer(1), aValue);
+            }
+            if(aValue.contains("WD20072011_")){
+                tm.put(new Integer(2), aValue);
+            }
+            if(aValue.contains("BH19702011_")){
+                tm.put(new Integer(3), aValue);
+            }
+            if(aValue.contains("WC19802011_")){
+                tm.put(new Integer(4), aValue);
+            }
+
+        }
+        //System.out.println(tm.values().toString());
+        return new ArrayList(tm.values());
     }
 
     /**

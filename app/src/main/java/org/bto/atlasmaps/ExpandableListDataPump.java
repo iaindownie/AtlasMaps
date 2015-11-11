@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
 import xmlwise.XmlParseException;
@@ -24,6 +25,7 @@ public class ExpandableListDataPump {
                                                               boolean isBOU)
             throws IOException, XmlParseException {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<>();
+
 
         if (isBOU) {
             ArrayList groupings = new ArrayList(lhMap.keySet());
@@ -53,7 +55,7 @@ public class ExpandableListDataPump {
                 // Final output for if BOU ordered list
                 expandableListDetail.put(bouSpeciesName, refinedArray);
             }
-            return expandableListDetail;
+            return processMapSet(expandableListDetail);
 
         } else {
             TreeMap mapSpeciesCodesAndEnglishNames = new TreeMap<>();
@@ -81,10 +83,40 @@ public class ExpandableListDataPump {
                 expandableListDetail.put(speciesName, refinedArray);
             }
 
-            return expandableListDetail;
+            return processMapSet(expandableListDetail);
         }
 
 
+    }
+
+    /**
+     * Method to process removed maps and re-order the remaining maps.
+     * @param refinedArray
+     * @return
+     */
+    private static LinkedHashMap processMapSet(LinkedHashMap refinedArray){
+        LinkedHashMap newMap = new LinkedHashMap();
+        ArrayList keys = new ArrayList(refinedArray.keySet());
+        for (int i = 0; i < keys.size(); i++) {
+            String aKey = (String)keys.get(i);
+            ArrayList values = (ArrayList)refinedArray.get(aKey);
+            List newValues = new ArrayList();
+            if(values.contains("Breeding Distribution 2008-11")){
+                newValues.add("Breeding Distribution 2008-11");
+            }
+            if(values.contains("Winter Distribution 2007-11")){
+                newValues.add("Winter Distribution 2007-11");
+            }
+            if(values.contains("Breeding Occupancy History 1970-2011")){
+                newValues.add("Breeding Occupancy History 1970-2011");
+            }
+            if(values.contains("Winter Change 1980-2011")){
+                newValues.add("Winter Change 1980-2011");
+            }
+            newMap.put(aKey, newValues);
+        }
+        System.out.println(newMap.toString());
+        return newMap;
     }
 
     /*public static HashMap getGroupsParallel() {

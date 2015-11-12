@@ -115,7 +115,6 @@ public class ExpandableListDataPump {
             }
             newMap.put(aKey, newValues);
         }
-        System.out.println(newMap.toString());
         return newMap;
     }
 

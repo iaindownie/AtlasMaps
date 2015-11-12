@@ -159,7 +159,6 @@ public class MainActivity extends Activity implements
 
                 String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(expandableListTitle.get(groupPosition));
                 ArrayList aBunchOfMaps = (ArrayList) mapSet.get(Utilities.padWithNaughts(speciesCode));
-                System.out.println("aBunchOfMaps:" + aBunchOfMaps.toString());
                 originalPosition = groupPosition;
                 Intent mapView = new Intent(getBaseContext(), MapDetailViewPager.class);
                 /**

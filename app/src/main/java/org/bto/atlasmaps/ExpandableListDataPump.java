@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.TreeMap;
 
 import xmlwise.XmlParseException;
@@ -46,14 +45,18 @@ public class ExpandableListDataPump {
                 List refinedArray = new ArrayList();
                 for (int j = 0; j < anArray.size(); j++) {
                     String aChildItem = (String) anArray.get(j);
+
                     // If clause to remove old maps (prototype)
                     if (aChildItem.contains("BD20072011_") || aChildItem.contains("BH19702011_")
                             || aChildItem.contains("WC19802011_") || aChildItem.contains("WD20072011_")) {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }
                 }
-                // Final output for if BOU ordered list
-                expandableListDetail.put(bouSpeciesName, refinedArray);
+
+                if (refinedArray.size() > 0) {
+                    // Final output for if BOU ordered list
+                    expandableListDetail.put(bouSpeciesName, refinedArray);
+                }
             }
             return processMapSet(expandableListDetail);
 
@@ -79,8 +82,12 @@ public class ExpandableListDataPump {
                         refinedArray.add(Utilities.getSensibleMapName(aChildItem));
                     }
                 }
-                // Final output for if Alphabetic species list
-                expandableListDetail.put(speciesName, refinedArray);
+
+                if (refinedArray.size() > 0) {
+                    // Final output for if Alphabetic species list
+                    expandableListDetail.put(speciesName, refinedArray);
+                }
+
             }
 
             return processMapSet(expandableListDetail);
@@ -91,26 +98,30 @@ public class ExpandableListDataPump {
 
     /**
      * Method to process removed maps and re-order the remaining maps.
-     * @param refinedArray
-     * @return
+     *
+     * @param refinedArray, a holder for the maps to use
+     * @return A linkedHashMap in order of presentation on the app
      */
-    private static LinkedHashMap processMapSet(LinkedHashMap refinedArray){
+    private static LinkedHashMap processMapSet(LinkedHashMap refinedArray) {
         LinkedHashMap newMap = new LinkedHashMap();
         ArrayList keys = new ArrayList(refinedArray.keySet());
         for (int i = 0; i < keys.size(); i++) {
-            String aKey = (String)keys.get(i);
-            ArrayList values = (ArrayList)refinedArray.get(aKey);
+            String aKey = (String) keys.get(i);
+            ArrayList values = (ArrayList) refinedArray.get(aKey);
             List newValues = new ArrayList();
-            if(values.contains("Breeding Distribution 2008-11")){
+            if (values.contains("Crossbill Survey 2008")) {
+                newValues.add("Crossbill Survey 2008");
+            }
+            if (values.contains("Breeding Distribution 2008-11")) {
                 newValues.add("Breeding Distribution 2008-11");
             }
-            if(values.contains("Winter Distribution 2007-11")){
+            if (values.contains("Winter Distribution 2007-11")) {
                 newValues.add("Winter Distribution 2007-11");
             }
-            if(values.contains("Breeding Occupancy History 1970-2011")){
+            if (values.contains("Breeding Occupancy History 1970-2011")) {
                 newValues.add("Breeding Occupancy History 1970-2011");
             }
-            if(values.contains("Winter Change 1980-2011")){
+            if (values.contains("Winter Change 1980-2011")) {
                 newValues.add("Winter Change 1980-2011");
             }
             newMap.put(aKey, newValues);

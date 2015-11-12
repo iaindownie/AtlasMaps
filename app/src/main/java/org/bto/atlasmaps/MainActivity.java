@@ -407,8 +407,8 @@ public class MainActivity extends Activity implements
             spawny.append("Currently viewing ALL available species.\n\n");
         }
         spawny.append("The Bird Atlas 2007-11 book included ~300 species accounts, ");
-        spawny.append("but maps exist for over 500 species. You can toggle between ");
-        spawny.append("the smaller (easier to navigate) list and the full list by ");
+        spawny.append("but maps exist for many more species. You can toggle between ");
+        spawny.append("book species (easier to navigate) and book plus extra species ");
         spawny.append("using the 'switch lists' button below.\n\n");
         spawny.append("Your choice will be remembered until you next change it.\n");
         text.setText(spawny.toString());

@@ -12,14 +12,16 @@ import org.spawny.atlasmaps.R;
 /**
  * Created by iaindownie on 19/10/2015.
  * Copyright @iaindownie
- * TODO: Add a class header comment!
+ * Simple spash screen activity. Runs a temp Runnable thread before redirects
+ * to the mian activity, closing itself. Only appears when app is launched on
+ *  device, not if the app is still running in background.
  */
 public class Splash extends Activity {
 
     /**
-     * Duration of wait
+     * Duration of wait - 1000ms = 1second
      **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 1200;
 
     /**
      * Called when the activity is first created.

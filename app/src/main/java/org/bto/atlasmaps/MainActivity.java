@@ -8,8 +8,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +29,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.bto.atlasmaps.fluff.AboutBirdAtlasMaps;
-import org.spawny.atlasmaps.BuildConfig;
 import org.spawny.atlasmaps.R;
 
 import java.io.IOException;
@@ -202,10 +199,10 @@ public class MainActivity extends Activity implements
      */
     private void performDataPump(boolean isBook, boolean isBOU) {
         // Set the files to use based on preferences
-        String mapSetFilename = Constants.mapSetFile;
-        String speciesNamesFilename = Constants.allSpeciesFile;
+        String mapSetFilename = Constants.MAPSET_FILE;
+        String speciesNamesFilename = Constants.SPECIES_LIST_ALL_FILE;
         if (isBook) {
-            speciesNamesFilename = Constants.bookSpeciesFile;
+            speciesNamesFilename = Constants.SPECIES_LIST_BOOK_FILE;
         }
         // Populate the maps etc. from PLISTS based on files from preferences
         try {

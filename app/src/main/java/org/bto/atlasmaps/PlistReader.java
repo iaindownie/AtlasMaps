@@ -103,9 +103,9 @@ public class PlistReader {
         HashMap<String, Object> hMap = null;
         String thePlist;
         if (isBook) {
-            thePlist = Constants.bouOrderedAtlasSpeciesFile;
+            thePlist = Constants.BOU_ORDERED_SPECIES_LIST_BOOK_FILE;
         } else {
-            thePlist = Constants.bouOrderedAllSpeciesFile;
+            thePlist = Constants.BOU_ORDERED_SPECIES_LIST_ALL_FILE;
         }
         try {
             //In order to access files stored in Asset folder you need AssetManager

@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="#FFFFFF">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.bto.atlasmaps.fluff.AboutBirdAtlasMaps"
+    android:background="#FFFFFF">
 
-    <ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/splash_screen_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/splash_660_880"
-        android:layout_gravity="center"/>
+        android:orientation="vertical">
 
-    <!--<TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World, splash"/>-->
+        <ImageView
+            android:id="@+id/partner_logo1"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:layout_weight="0.33"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:src="@drawable/bto_logo" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/partner_logo2"
+            android:layout_width="wrap_content"
+            android:layout_height="100dip"
+            android:layout_weight="0.33"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:src="@drawable/bwi_logo_300px"
+            android:paddingTop="10dip"
+            android:paddingBottom="20dip" />
+
+        <ImageView
+            android:id="@+id/partner_logo3"
+            android:layout_width="wrap_content"
+            android:layout_height="80dip"
+            android:layout_weight="0.33"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:src="@drawable/soc_logo_300px"
+            android:paddingBottom="10dip" />
+    </LinearLayout>
+
+</LinearLayout><!--
+    <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="fill_parent"
+android:layout_height="fill_parent" android:background="#FFFFFF">
+
+<ImageView android:id="@+id/splashscreen" android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:src="@drawable/splash_660_880"
+    android:layout_gravity="center"/>
+
+
+
+</LinearLayout>-->

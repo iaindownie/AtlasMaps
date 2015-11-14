@@ -112,6 +112,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+        listTitleTextView.setSelected(true);
         /*String group = (String) this.groupsParallel.get(listTitle);
         TextView circleTextView = (TextView) convertView
                 .findViewById(R.id.circleTitle);

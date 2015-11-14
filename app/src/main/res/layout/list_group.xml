@@ -17,7 +17,9 @@
         android:textColor="#000000"
         android:gravity="left"
         android:layout_weight="1.0"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:ellipsize="marquee"/>
 
     <!--<TextView
         android:id="@+id/circleTitle"

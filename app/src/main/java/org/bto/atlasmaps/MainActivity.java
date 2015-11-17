@@ -80,6 +80,7 @@ public class MainActivity extends Activity implements
 
         setContentView(R.layout.activity_main);
 
+
         //getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.action_bar_icon);
 
         // Create the keyboard manager, so I can close it when not needed
@@ -189,6 +190,7 @@ public class MainActivity extends Activity implements
         });
 
     }
+
 
     /**
      * The meat of the data population and if altered by settings, then update

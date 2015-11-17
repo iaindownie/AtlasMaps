@@ -26,8 +26,6 @@ import android.widget.ImageView;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
-import org.spawny.atlasmaps.R;
-
 /**
  * Created in project iaindownie on 22/10/2015.
  * Copyright (c) 2012 Michael Ortiz
@@ -429,7 +427,7 @@ public class TouchImageView extends ImageView {
      * Set zoom parameters equal to another TouchImageView. Including scale, position,
      * and ScaleType.
      *
-     * @param TouchImageView
+     * @param img A TouchImageView object
      */
     public void setZoom(TouchImageView img) {
         PointF center = img.getScrollPosition();

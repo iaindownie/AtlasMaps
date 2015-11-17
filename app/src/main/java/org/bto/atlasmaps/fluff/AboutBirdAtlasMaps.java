@@ -87,7 +87,7 @@ public class AboutBirdAtlasMaps extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stoped");
+        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stopped");
     }
 
     @Override

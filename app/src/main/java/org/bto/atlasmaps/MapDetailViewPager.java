@@ -3,16 +3,13 @@ package org.bto.atlasmaps;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,7 +59,7 @@ public class MapDetailViewPager extends Activity {
 
         for (int i = 0; i < allMaps.size(); i++) {
             try {
-                ims = getAssets().open("maps/" + (String) allMaps.get(i));
+                ims = getAssets().open("maps/" + allMaps.get(i));
                 Drawable d = Drawable.createFromStream(ims, null);
                 imageHolder.add(d);
             } catch (IOException ex) {
@@ -219,7 +216,7 @@ public class MapDetailViewPager extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stoped");
+        //Log.i(TAG, "Activity Life Cycle : onStop : Activity Stopped");
     }
 
     @Override

@@ -37,7 +37,8 @@
                 android:gravity="right"
                 android:paddingRight="5dip"
                 android:scaleType="fitCenter"
-                android:src="@drawable/arrow_right" />
+                android:src="@drawable/arrow_right"
+                android:contentDescription="@string/right_arrow"/>
         </LinearLayout>
     </LinearLayout>
 

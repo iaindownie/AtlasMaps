@@ -73,30 +73,30 @@ public class Utilities {
      * @return ArrayList of reduced names
      */
     public static ArrayList<String> getImageStringsOnly(ArrayList aList) {
-        ArrayList<String> newList = new ArrayList<String>();
+        ArrayList<String> newList = new ArrayList<>();
         for (int i = 0; i < aList.size(); i++) {
             String mapName = (String) aList.get(i);
             String temp = mapName.substring(mapName.indexOf("=") + 1, mapName.length() - 1);
             // Code to handle the reduced mapset (no old maps)
-            if(temp.contains("BD20072011_") || temp.contains("BH19702011_")
+            if (temp.contains("BD20072011_") || temp.contains("BH19702011_")
                     || temp.contains("WC19802011_") || temp.contains("WD20072011_")) {
                 newList.add(temp);
             }
         }
         TreeMap tm = new TreeMap();
         for (int i = 0; i < newList.size(); i++) {
-            String aValue = (String)newList.get(i);
-            if(aValue.contains("BD20072011_")){
-                tm.put(new Integer(1), aValue);
+            String aValue = newList.get(i);
+            if (aValue.contains("BD20072011_")) {
+                tm.put(Integer.valueOf(1), aValue);
             }
-            if(aValue.contains("WD20072011_")){
-                tm.put(new Integer(2), aValue);
+            if (aValue.contains("WD20072011_")) {
+                tm.put(Integer.valueOf(2), aValue);
             }
-            if(aValue.contains("BH19702011_")){
-                tm.put(new Integer(3), aValue);
+            if (aValue.contains("BH19702011_")) {
+                tm.put(Integer.valueOf(3), aValue);
             }
-            if(aValue.contains("WC19802011_")){
-                tm.put(new Integer(4), aValue);
+            if (aValue.contains("WC19802011_")) {
+                tm.put(Integer.valueOf(4), aValue);
             }
 
         }
@@ -109,7 +109,7 @@ public class Utilities {
      * @return ArrayList of bird species groupings, following standard BOU order
      */
     public static ArrayList<String> bouGroupings() {
-        ArrayList<String> groupings = new ArrayList<String>();
+        ArrayList<String> groupings = new ArrayList<>();
         groupings.add("Wildfowl");
         groupings.add("Gamebirds");
         groupings.add("Divers");
@@ -158,7 +158,7 @@ public class Utilities {
      * @return ArrayList of bird species groupings & colours, following standard BOU order
      */
     public static HashMap<String, String> bouGroupingsColours() {
-        HashMap<String, String> groupings = new HashMap<String, String>();
+        HashMap<String, String> groupings = new HashMap<>();
         groupings.put("Wildfowl", "99CCBB");
         groupings.put("Gamebirds", "FFCC99");
         groupings.put("Divers", "66CCCC");

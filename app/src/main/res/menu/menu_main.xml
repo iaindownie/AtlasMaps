@@ -5,12 +5,12 @@
         android:id="@+id/list_switch"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/switch_listMenu" />
+        android:title="@string/switch_list_menu" />
     <item
         android:id="@+id/order_switch"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/switch_ordermenu" />
+        android:title="@string/switch_order_menu" />
     <item
         android:id="@+id/about"
         android:orderInCategory="100"

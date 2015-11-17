@@ -33,7 +33,7 @@ public class ExpandableListDataPump {
                 String aGroup = (String) groupings.get(i);
                 ArrayList aList = (ArrayList) lhMap.get(aGroup);
                 for (int j = 0; j < aList.size(); j++) {
-                    bouSpecies.add((String) aList.get(j));
+                    bouSpecies.add(aList.get(j));
                     //groupsParallel.put((String) aList.get(j), aGroup);
                 }
             }
@@ -66,7 +66,7 @@ public class ExpandableListDataPump {
             for (int i = 0; i < codedSpecies.size(); i++) {
                 String speciesName = (String) codedSpecies.get(i);
                 String speciesCode = (String) mapEnglishNamesAndSpeciesCodes.get(speciesName);
-                mapSpeciesCodesAndEnglishNames.put(new Integer(speciesCode), speciesName);
+                mapSpeciesCodesAndEnglishNames.put(Integer.valueOf(speciesCode), speciesName);
             }
             ArrayList aList = new ArrayList(mapEnglishNamesAndSpeciesCodes.keySet());
             for (int i = 0; i < aList.size(); i++) {

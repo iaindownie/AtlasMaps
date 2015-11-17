@@ -4,13 +4,28 @@
     <string name="action_settings">Extra</string>
 
     <string name="about">About</string>
-    <string name="instructions">Help</string>
     <string name="dismiss">Dismiss</string>
     <string name="toggle_species">Change number of species</string>
     <string name="toggle_order">Change species order</string>
     <string name="list_switch">Switch lists</string>
     <string name="order_switch">Switch order</string>
-    <string name="switch_listMenu">Switch species lists</string>
-    <string name="switch_ordermenu">Switch species order</string>
+    <string name="switch_list_menu">Switch species lists</string>
+    <string name="switch_order_menu">Switch species order</string>
     <string name="families">Species group colours</string>
+
+    <string name="app_name_2">Bird Atlas 2007&#8211;11 Mapstore</string>
+    <string name="bottom">Go to bottom</string>
+    <string name="top">Go to top</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="flip">Can flip screen</string>
+
+    <string name="bto_logo_desc">BTO logo</string>
+    <string name="bwi_logo_desc">BWI logo</string>
+    <string name="soc_logo_desc">SOC logo</string>
+    <string name="right_arrow">Right arrow for child items</string>
+    <string name="map">An Atlas Map</string>
+    <string name="app_logo">Flip screen icon</string>
+
+
 </resources>

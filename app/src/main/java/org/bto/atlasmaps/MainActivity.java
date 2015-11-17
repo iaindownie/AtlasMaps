@@ -95,7 +95,6 @@ public class MainActivity extends Activity implements
         //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#CC3300")));
 
 
-
         // Set up the shared preferences for species list type and order (default true)
         prefs = getPreferences(Context.MODE_PRIVATE);
         isBook = prefs.getBoolean("LIST", true);

@@ -59,7 +59,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final String expandedListText = (String) getChild(listPosition, expandedListPosition);
+        final String expandedListText = " " + getChild(listPosition, expandedListPosition);
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,7 +69,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.expandedListItem);
         expandedListTextView.setText(expandedListText);
         LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.aListItem);
-        if (expandedListText.startsWith("Breeding") || expandedListText.startsWith("Crossbill")) {
+        if (expandedListText.startsWith(" Breeding") || expandedListText.startsWith(" Crossbill")) {
             linearLayout.setBackgroundColor(Color.parseColor("#FFCC99"));
         } else {
             linearLayout.setBackgroundColor(Color.parseColor("#99CCFF"));
@@ -141,9 +141,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     /**
      * Method to add search filter
      *
-     * @param query
+     * @param query A string that initiates the filter
      */
-
     public void filterData(String query) {
 
         query = query.toLowerCase();

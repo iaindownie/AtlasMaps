@@ -14,7 +14,8 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:padding="5dip"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_logo"/>
 
         <TextView
             android:id="@+id/title_text"
@@ -42,6 +43,7 @@
 
         <Button
             android:id="@+id/orderDismissButton"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -50,6 +52,7 @@
 
         <Button
             android:id="@+id/toggle_order"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"

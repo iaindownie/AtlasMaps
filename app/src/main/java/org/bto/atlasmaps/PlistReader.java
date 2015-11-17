@@ -138,7 +138,7 @@ public class PlistReader {
         for (int i = 0; i < groupings.size(); i++) {
             String aGroup = (String) groupings.get(i);
             if (hMap.containsKey(aGroup)) {
-                lhMap.put(aGroup, (List) hMap.get(aGroup));
+                lhMap.put(aGroup, hMap.get(aGroup));
             }
         }
 

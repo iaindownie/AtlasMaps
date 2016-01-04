@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
 import org.bto.atlasmaps.MainActivity;
 import org.spawny.atlasmaps.R;
 
@@ -31,7 +29,6 @@ public class Splash extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        Fabric.with(this, new Crashlytics());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.splash);
         

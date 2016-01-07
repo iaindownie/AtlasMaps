@@ -22,8 +22,18 @@ import xmlwise.XmlParseException;
  */
 public class PlistReader {
 
+    /**
+     * Method to read in PLIST of maps
+     * @param context - needed for the Asset folder access
+     * @param filename - needed in case file is updated?
+     * @return - HashMap of species (String) and available maps (List)
+     * @throws XmlParseException
+     * @throws IOException
+     */
     public HashMap getMapsAsHashMap(Context context, String filename) throws XmlParseException, IOException {
+        // For the initial PLIST parse
         HashMap<String, Object> hMap = null;
+        // For the final return object
         HashMap<String, List> refinedMap = new HashMap<>();
         try {
             //In order to access files stored in Asset folder you need AssetManager
@@ -39,7 +49,7 @@ public class PlistReader {
                 while ((line = br.readLine()) != null) {
                     sb.append(line);
                 }
-
+                // Use the XMLWISE parsing library
                 hMap = new HashMap(Plist.fromXml(sb.toString()));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -50,6 +60,7 @@ public class PlistReader {
             ex.printStackTrace();
         }
 
+        // Get a list of the species from PLIST keys (actually double arrays)
         ArrayList alphaSpecies = new ArrayList(hMap.keySet());
         List anArray, species2;
         ArrayList b;

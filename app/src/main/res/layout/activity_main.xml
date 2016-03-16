@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="10dp"
-    tools:context="com.javapapers.android.expandablelistview.app.MainActivity">
+    tools:context="org.bto.atlasmaps.MainActivity">
 
     <LinearLayout
         android:id="@+id/search_and_nav"
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_and_nav"
-        android:divider="#A59367"
+        android:divider="@color/olive_brown"
         android:dividerHeight="0.5dp"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
         android:transcriptMode="disabled" />

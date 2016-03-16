@@ -25,7 +25,7 @@
     <string name="soc_logo_desc">SOC logo</string>
     <string name="right_arrow">Right arrow for child items</string>
     <string name="map">An Atlas Map</string>
-    <string name="app_logo">Flip screen icon</string>
+    <string name="app_logo">App icon</string>
 
 
 </resources>

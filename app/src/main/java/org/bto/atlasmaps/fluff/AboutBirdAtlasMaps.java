@@ -28,13 +28,14 @@ public class AboutBirdAtlasMaps extends Activity {
         StringBuilder mainText = new StringBuilder();
         mainText.append("The Bird Atlas Mapstore App presents breeding and winter season ");
         mainText.append("distribution and change maps for all species, where data are available, ");
-        mainText.append("from the BTO/BirdWatch Ireland/SOC Bird Atlas 2007-11.");
+        mainText.append("from the BTO/BirdWatch Ireland/SOC Bird Atlas 2007–11.");
         aboutText.setText(mainText.toString());
 
         TextView feedback = (TextView) findViewById(R.id.interpret_text);
         StringBuilder interpretText = new StringBuilder();
         interpretText.append("For further information on interpretation of these maps, please ");
-        interpretText.append("visit <a href=\"http://www.birdatlas.net\">www.birdatlas.net</a>.");
+        interpretText.append("visit the <a href=\"http://www.bto.org/volunteer-surveys/birdatlas\">");
+        interpretText.append("Atlas pages on the BTO Website</a>.");
         feedback.setText(Html.fromHtml(interpretText.toString()));
         feedback.setMovementMethod(LinkMovementMethod.getInstance());
 

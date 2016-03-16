@@ -44,12 +44,14 @@ import xmlwise.XmlParseException;
  * Created by Iain Downie on 30/09/2015.
  * Main Activity to launch application, populate ListView
  * from PLIST reader and create parent/child elements
+ * <p/>
+ * groupsParallel code commented out as may be useful?
  */
 public class MainActivity extends Activity implements
         SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
     private SearchView search;
-    ProgressDialog myProgress;
+    private ProgressDialog myProgress;
 
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
@@ -76,12 +78,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_LEFT_ICON);
-
         setContentView(R.layout.activity_main);
-
-
-        //getWindow().setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.action_bar_icon);
 
         // Create the keyboard manager, so I can close it when not needed
         imm = (InputMethodManager) this
@@ -92,15 +89,12 @@ public class MainActivity extends Activity implements
         ActionBar actionBar = this.getActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(R.drawable.action_bar_icon);
-        actionBar.setDisplayUseLogoEnabled(true);/**/
-        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#CC3300")));
-
+        actionBar.setDisplayUseLogoEnabled(true);
 
         // Set up the shared preferences for species list type and order (default true)
         prefs = getPreferences(Context.MODE_PRIVATE);
         isBook = prefs.getBoolean("LIST", true);
         isBOU = prefs.getBoolean("ORDER", true);
-
 
         // Search manager code for finding species easier
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -176,6 +170,9 @@ public class MainActivity extends Activity implements
             }
         });
 
+        /*
+        Two buttons for scrolling to top and bottom positions of the parent list
+         */
         ImageButton uparrow = (ImageButton) findViewById(R.id.go_top);
         uparrow.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -404,7 +401,7 @@ public class MainActivity extends Activity implements
         } else {
             spawny.append("Currently viewing ALL available species.\n\n");
         }
-        spawny.append("The Bird Atlas 2007-11 book included ~300 species accounts, ");
+        spawny.append("The Bird Atlas 2007–11 book included ~300 species accounts, ");
         spawny.append("but maps exist for many more species. You can toggle between ");
         spawny.append("book species (easier to navigate) and book plus extra species ");
         spawny.append("using the 'switch lists' button below.\n\n");
@@ -419,19 +416,14 @@ public class MainActivity extends Activity implements
             public void onClick(View v) {
                 if (isBook) {
                     isBook = false;
-                    performDataPump(isBook, isBOU);
-                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
-                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
-                            "LIST", isBook);
-                    editor.apply();
                 } else {
                     isBook = true;
-                    performDataPump(isBook, isBOU);
-                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
-                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
-                            "LIST", isBook);
-                    editor.apply();
                 }
+                performDataPump(isBook, isBOU);
+                ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
+                SharedPreferences.Editor editor = prefs.edit().putBoolean(
+                        "LIST", isBook);
+                editor.apply();
                 dialog.dismiss();
             }
         });
@@ -455,7 +447,7 @@ public class MainActivity extends Activity implements
         //dialog.setTitle("Toggle the species order");
         TextView text = (TextView) dialog.findViewById(R.id.order_text);
         StringBuilder spawny = new StringBuilder();
-        if (isBook) {
+        if (isBOU) {
             spawny.append("Currently viewing BOU species order\n\n");
         } else {
             spawny.append("Currently viewing ALPHABETIC order\n\n");
@@ -478,19 +470,14 @@ public class MainActivity extends Activity implements
             public void onClick(View v) {
                 if (isBOU) {
                     isBOU = false;
-                    performDataPump(isBook, isBOU);
-                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
-                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
-                            "ORDER", isBOU);
-                    editor.apply();
                 } else {
                     isBOU = true;
-                    performDataPump(isBook, isBOU);
-                    ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
-                    SharedPreferences.Editor editor = prefs.edit().putBoolean(
-                            "ORDER", isBOU);
-                    editor.apply();
                 }
+                performDataPump(isBook, isBOU);
+                ((BaseAdapter) expandableListView.getAdapter()).notifyDataSetChanged();
+                SharedPreferences.Editor editor = prefs.edit().putBoolean(
+                        "ORDER", isBOU);
+                editor.apply();
                 dialog.dismiss();
             }
         });

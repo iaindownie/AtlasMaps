@@ -112,17 +112,17 @@ public class ExpandableListDataPump {
             if (values.contains("Crossbill Survey 2008")) {
                 newValues.add("Crossbill Survey 2008");
             }
-            if (values.contains("Breeding Distribution 2008-11")) {
-                newValues.add("Breeding Distribution 2008-11");
+            if (values.contains("Breeding Distribution 2008–11")) {
+                newValues.add("Breeding Distribution 2008–11");
             }
-            if (values.contains("Winter Distribution 2007-11")) {
-                newValues.add("Winter Distribution 2007-11");
+            if (values.contains("Winter Distribution 2007–11")) {
+                newValues.add("Winter Distribution 2007–11");
             }
-            if (values.contains("Breeding Occupancy History 1970-2011")) {
-                newValues.add("Breeding Occupancy History 1970-2011");
+            if (values.contains("Breeding Occupancy History 1970–2011")) {
+                newValues.add("Breeding Occupancy History 1970–2011");
             }
-            if (values.contains("Winter Change 1980-2011")) {
-                newValues.add("Winter Change 1980-2011");
+            if (values.contains("Winter Change 1980–2011")) {
+                newValues.add("Winter Change 1980–2011");
             }
             newMap.put(aKey, newValues);
         }

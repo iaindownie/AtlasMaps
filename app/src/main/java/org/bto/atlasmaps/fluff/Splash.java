@@ -21,7 +21,7 @@ public class Splash extends Activity {
     /**
      * Duration of wait - 1000ms = 1second
      **/
-    private final int SPLASH_DISPLAY_LENGTH = 1200;
+    private final int SPLASH_DISPLAY_LENGTH = 1300;
 
     /**
      * Called when the activity is first created.
